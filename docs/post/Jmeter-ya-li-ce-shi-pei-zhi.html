@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 真的理解Jmeter线程数、Ramp-Up、循环次数真的理解？
+
+Jmeter平时做API接口的吞吐量测试，几个配置项很好上手没有去深入思考。">
+<meta property="og:title" content="Jmeter压力测试配置">
+<meta property="og:description" content="# 真的理解Jmeter线程数、Ramp-Up、循环次数真的理解？
+
+Jmeter平时做API接口的吞吐量测试，几个配置项很好上手没有去深入思考。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/Jmeter-ya-li-ce-shi-pei-zhi.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>Jmeter压力测试配置</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Jmeter压力测试配置</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>真的理解Jmeter线程数、Ramp-Up、循环次数真的理解？</h1>
+<p>Jmeter平时做API接口的吞吐量测试，几个配置项很好上手没有去深入思考。<br>
+有几个疑问：<br>
+1 Ramp-Up配置时间实际作用？<br>
+2 循环是在哪个时间点开始执行的？与线程组的关系是怎样的？<br>
+3 配置10/s个并发如何实现？</p>
+<p>有疑问就实践，读别人博客难免找不到自己想要的内容。<br>
+实践疑问1：<br>
+Ramp-UP time的实际作用，图一为例解释：有5个线程需要5秒发送完成，也就是1个/s请求。（如果线程数是10，ramp-up time是5，又是什么意思？）<br>
+注：线程数抽象实例化后就是用户数，Ramp-up time是规定所有用户在时间段内把请求发送完（前提条件循环次数是1），而且请求的时间间隔是固定的=Ramp-Up time/线程数。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3c47a54574256ba2f6b68b21cf5525b181c7212392df5133440cc05dce1bd0b6/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830363633312e706e67"><img src="https://camo.githubusercontent.com/3c47a54574256ba2f6b68b21cf5525b181c7212392df5133440cc05dce1bd0b6/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830363633312e706e67" alt="img" data-canonical-src="http://img.code520.net/blog/202206291806631.png" style="max-width: 100%;"></a></p>
+<p>看执行结果统计：从结果中可以看出，总计时耗时5s，请求数是5个，时间间隔是固定的1秒（这个总时耗和时间间隔就是Ramp-Up time实际作用）。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cf996b03f07626fc7251f8195af6587072035883e9602d732e7a5e62a3e0ba0d/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830363432342e706e67"><img src="https://camo.githubusercontent.com/cf996b03f07626fc7251f8195af6587072035883e9602d732e7a5e62a3e0ba0d/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830363432342e706e67" alt="img" data-canonical-src="http://img.code520.net/blog/202206291806424.png" style="max-width: 100%;"></a></p>
+<p>疑问二： 循环是在哪个时间点开始执行的？与线程组的关系是怎样的？<br>
+解答：循环开始时间几乎与启动时间并行，<br>
+如下图解释：a循环数为1的解释是1个/s请求发5次请求。<br>
+b循环数为2时解释是（1个/s请求发5次）执行2遍（循环数），循环开始执行时间几乎与第一遍执行时间并行。（仔细观察Thread Name的时间点）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/89cfb7a0896b8d13ccc2302ba587954830e00a4dfb653652cf43ddad8ffdd32c/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830363335362e706e67"><img src="https://camo.githubusercontent.com/89cfb7a0896b8d13ccc2302ba587954830e00a4dfb653652cf43ddad8ffdd32c/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830363335362e706e67" alt="img" data-canonical-src="http://img.code520.net/blog/202206291806356.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/55afd1dcef8c2325ef763904481ea0d0e3f427e91f5ed84f70bdffe846fc803f/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373634332e706e67"><img src="https://camo.githubusercontent.com/55afd1dcef8c2325ef763904481ea0d0e3f427e91f5ed84f70bdffe846fc803f/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373634332e706e67" alt="img" data-canonical-src="http://img.code520.net/blog/202206291807643.png" style="max-width: 100%;"></a></p>
+<p>疑问三：配置10/s个<a href="https://so.csdn.net/so/search?q=%E5%B9%B6%E5%8F%91&amp;spm=1001.2101.3001.7020" rel="nofollow">并发</a>如何实现？是否可以通过（线程数，Ramp-Up time、循环数）配合来实现？<br>
+方法一： 通过（线程数，Ramp-Up time、循环数）配合来实现<br>
+组合有很多种，我列了几个</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5c6bf6a146208902cbfa0b08b87f87688e88857c942458c0ab63042882687537/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373231372e706e67"><img src="https://camo.githubusercontent.com/5c6bf6a146208902cbfa0b08b87f87688e88857c942458c0ab63042882687537/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373231372e706e67" alt="实例" data-canonical-src="http://img.code520.net/blog/202206291807217.png" style="max-width: 100%;"></a></p>
+<p>方法二：用Jmeter自带Constant Throughput Timer插件实现，实际测试这样配置要达到10/s的效果不可行。（原因：评估这个配置限制TPS值的最小单位是minute，所有对数量小的请求统计测试不准是可以理解的。）具体是什么原因该以后工作留个疑问，多阅读多思考。<br>
+对上minute级别的大并发测试这个配置项应该是准的。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fa1d3ecb6ffde0ac2012c9c0ecd47a195a452e5565a5ac34679d3beec7b01c0d/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373334312e706e67"><img src="https://camo.githubusercontent.com/fa1d3ecb6ffde0ac2012c9c0ecd47a195a452e5565a5ac34679d3beec7b01c0d/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373334312e706e67" alt="img" data-canonical-src="http://img.code520.net/blog/202206291807341.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0934bf779d7eed41a9ba19df146f74f55f3166d0cdfd0b33c16f47deb4c1f59e/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373433372e706e67"><img src="https://camo.githubusercontent.com/0934bf779d7eed41a9ba19df146f74f55f3166d0cdfd0b33c16f47deb4c1f59e/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830373433372e706e67" alt="img" data-canonical-src="http://img.code520.net/blog/202206291807437.png" style="max-width: 100%;"></a></p>
+<p>最后思考下：Ramp-Up time 为0 是什么意思？<br>
+用压测服务器最大的能力持续发送请求</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/59907f3b45afe6d95545d67d3bbafef277d1b9904b2ead6e6d1fc0b39e5cd841/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830383830332e706e67"><img src="https://camo.githubusercontent.com/59907f3b45afe6d95545d67d3bbafef277d1b9904b2ead6e6d1fc0b39e5cd841/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830383830332e706e67" alt="image-20220629180858681" data-canonical-src="http://img.code520.net/blog/202206291808803.png" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
