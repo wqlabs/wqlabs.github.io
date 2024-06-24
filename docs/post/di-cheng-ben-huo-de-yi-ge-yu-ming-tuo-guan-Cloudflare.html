@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="域名的基本概念
+
+众所周知，域名的作用是将复杂的IP地址转化为易于记忆的字符串。">
+<meta property="og:title" content="低成本获得一个域名托管Cloudflare">
+<meta property="og:description" content="域名的基本概念
+
+众所周知，域名的作用是将复杂的IP地址转化为易于记忆的字符串。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/di-cheng-ben-huo-de-yi-ge-yu-ming-tuo-guan-Cloudflare.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>低成本获得一个域名托管Cloudflare</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">低成本获得一个域名托管Cloudflare</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/11" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>域名的基本概念</p>
+<p>众所周知，域名的作用是将复杂的IP地址转化为易于记忆的字符串。以我自己的域名www.tech-shrimp.com为例，被两个点划分成了三个部分。其中，最右边的.com是顶级域名，顶级域名通常由国家或机构持有，普通用户是无法直接注册的。中间这部分英文名是Apex Domain，在各种资料与教程中，这部分有时候被称为一级域名，有时候被称为二级域名。为了避免歧义，在我视频中统一称之为主域名。普通用户通常购买的就是这个主域名。主域名的左边就是子域名，一个主域名可以免费扩展出很多个子域名。</p>
+<p>免费域名的限制</p>
+<p>目前有不少服务商提供免费子域名注册，视频的后面会演示如何获取免费域名。但俗话说，免费的就是最贵的。免费域名使用时经常受到各种限制。因此，我更推荐直接购买一个主域名，这样可以更加自由地使用和管理。</p>
+<p>如何购买一个域名</p>
+<p>我一般使用Namesilo网站</p>
+<p><a href="http://www.namesilo.com" rel="nofollow">www.namesilo.com</a></p>
+<p>购买一个便宜域名。在这里输入一个你想要的域名，比如这里我还是输入tech-shrimp，技术爬爬虾，点击搜索。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/4181b256-89b3-45c6-8519-9ebaa7392ead"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/4181b256-89b3-45c6-8519-9ebaa7392ead" alt="image" style="max-width: 100%;"></a></p>
+<p>这里就给出了一些对应域名的报价，上面这个是第一年的价格，然后下面这个renew是后面续费的价格。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/398f7831-7834-4261-8d3b-2b4346d04dce"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/398f7831-7834-4261-8d3b-2b4346d04dce" alt="image" style="max-width: 100%;"></a></p>
+<p>还有一种更便宜的域名，这里输入任意六位数字，比如输入我们家猫的生日，然后点击search。这种纯数字的xyz域名，第一年跟续费都只需要1美元。如果担心后续续费涨价，也可以提前续费。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/512c9db6-144f-4fa0-a07d-3e3c619b1371"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/512c9db6-144f-4fa0-a07d-3e3c619b1371" alt="image" style="max-width: 100%;"></a></p>
+<p>这里我选择这个点top的，它比较便宜，这里我就点击加入购物车，然后这里点check out。没有账号就在这里注册一个，注册成功这里自动生成了一个假地址，我就直接用这个默认了。然后我继续点击付款，这里最方便的就选择支付宝，右下角选择接受点击支付。本期视频成本13.67人民币。</p>
+<p>域名解析与DNS服务</p>
+<p>有了域名，我们还需要DNS。DNS是一种域名转换为IP地址的服务，当用户在浏览器输入一个网址时，浏览器会向DNS服务器发送请求以获取该网址对应的IP地址。DNS服务商我基本上都是用Cloudflare，因为它速度快，而且有一大堆的免费服务。我们看一下如何将域名托管到Cloudflare。</p>
+<p>将域名托管到Cloudflare</p>
+<p>我们先登录Cloudflare，</p>
+<p><a href="http://www.cloudflare.com" rel="nofollow">www.cloudflare.com</a></p>
+<p>右上角点击添加站点，这里就输刚才买的域名tech-shrimp.top，然后点击继续。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/684849af-73ae-4574-8e7b-ca71a37bad7b"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/684849af-73ae-4574-8e7b-ca71a37bad7b" alt="image" style="max-width: 100%;"></a></p>
+<p>这里有一些付费的，我们都不要，直接找下面这个免费的，点击继续。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/c09c58e7-5774-4e6c-a21c-64df2c1eacb9"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/c09c58e7-5774-4e6c-a21c-64df2c1eacb9" alt="image" style="max-width: 100%;"></a></p>
+<p>到这一步，什么都不用管，直接点击下一步。这一步是重点，更改名称服务器往下找，找到这两个名称服务器。我们需要去刚才买域名的网站更改一下。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/7226baf5-4db4-477c-89df-da52357b4e48"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/7226baf5-4db4-477c-89df-da52357b4e48" alt="image" style="max-width: 100%;"></a></p>
+<p>这里回到刚才的Namesilo，点击domain manager，然后进入这个域名，这里有一个name server。就把这里改一下，把原来的这三条全部删掉，然后填上刚才网站给我分配的这两个。点击保存。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/c6b001e8-1c1a-48ca-8cfa-4c0601ba327d"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/c6b001e8-1c1a-48ca-8cfa-4c0601ba327d" alt="image" style="max-width: 100%;"></a></p>
+<p>好，我们再回到Cloudflare，点击立即检查，然后点击继续。这里可以把自动重写https勾上，这些都保持默认，然后直接点击开始。我们回到网站的主页，等个几分钟，看到这里打上一个对勾，就可以开始直接使用了。</p>
+<p>使用Cloudflare做DNS</p>
+<p>爬爬虾之前有两期视频都介绍过使用Cloudflare做DNS。一期是将自己的域名代理到GitHub Pages上做个人博客使用，还有一期是使用自己的域名做DDNS，从而达成外网访问家庭服务器的内网。如果感兴趣的话，大家可以找来那两期视频看一下。</p>
+<p>国内外域名购买与备案</p>
+<p>说到这里，我想讨论一下关于从国内或者国外购买域名还有域名备案的问题。如果想要搭建网站，并且要保证网站在国内被访问到，那就需要使用国内的域名服务商加国内的云服务器，并且做好备案，保证网站的全产品链路都使用国内厂商，这样最保险。如果不做网站，只是做个普通的API接口，或者类似前几期视频我使用的DDNS，给家庭宽带做远程桌面，做SMB文件共享等等，那大可不必备案，也无所谓国内或者国外的域名服务商，哪里域名便宜去哪里买就可以。</p>
+<p>如何获取免费域名</p>
+<p>下面我们来看如何获取免费域名。我对比了很多网站，最好用的还是这个CloudNS。这个网站申请域名不需要人工审核，基本上秒过，而且我今天测试的它可以托管到Cloudflare。我马上来演示一下。</p>
+<p>我们先进入这个网站</p>
+<p><a href="http://www" rel="nofollow">www</a>. cloudns.net，</p>
+<p>然后这里点击登记，注册一个账号。进入以后，我们在这里点击创建区域，点击免费。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/cb5ba7b9-23ef-41fb-988e-cad143ae3fe1"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/cb5ba7b9-23ef-41fb-988e-cad143ae3fe1" alt="image" style="max-width: 100%;"></a></p>
+<p>这里域名我还是填tech-shrimp，下面这两种是可以托管Cloudflare的，那我们就选择这个be，然后点击创建。好，这就创建成功了。我把它托管到Cloudflare上，先把这4个NS删掉，</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/1b4b6d8f-0514-445e-be6b-5d2ae4841491"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/1b4b6d8f-0514-445e-be6b-5d2ae4841491" alt="image" style="max-width: 100%;"></a></p>
+<p>然后进入Cloudflare，还是添加站点，填我刚才那个域名，点击继续，还是把这两个NS服务放到这里。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e856576b-6bab-43d7-b6d8-ebe81f1bcb61"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e856576b-6bab-43d7-b6d8-ebe81f1bcb61" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/85ac319c-aecb-4d86-af5b-846dcd8c8a85"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/85ac319c-aecb-4d86-af5b-846dcd8c8a85" alt="image" style="max-width: 100%;"></a></p>
+<p>点击添加记录，这里类型就选择NS name server指向到，填Cloudflare给我分配的两个地址，先是这个，然后这个，保存。这里打上了对勾，那就代表托管成功了。</p>
+<p>免费域名的注意事项</p>
+<p>不过使用这个CloudNS的免费域名还有几个注意事项。首先是每一个前缀，我们都需要给它加一个NS服务器指向到Cloudflare的NS server。比如这个www的前缀，我就添了两条记录，然后这个blog的前缀我也添了两条记录。</p>
+<p>还有第二个注意事项，我们进入这个域名，点击左侧的SSL TSL，点击边缘证书，把这个证书展开，这里有两条证书，我们必须把它填写到记录里面。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e5927a17-60af-42dc-8066-465ea1756866"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e5927a17-60af-42dc-8066-465ea1756866" alt="image" style="max-width: 100%;"></a></p>
+<p>这里新添加一条记录，就按照这个格式写，然后下面指向到的这个字符串，就是从边缘证书这里拷贝过来的。需要把这些配置好才算配置成功。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/72e4f7a4-77ba-4c7c-aa2b-e813a4ec1a87"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/72e4f7a4-77ba-4c7c-aa2b-e813a4ec1a87" alt="image" style="max-width: 100%;"></a></p>
+<p>这里我还是按照上次Github Pages的视频，把这个域名通过Cloudflare代理到了一个Github Page，就是这个www.tech-shrimp.cloudns.be，可以看到它可以正常访问。不过像这种免费域名还是有很多缺点的。首先我在这里测了一下，只有这个www.tech-shrimp这个域名解析的算是比较好。可以看到这种不带前缀的解析的都非常差，除了澳洲，其他地方都没有解析好。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/7b328d1a-a186-4e20-9d4a-b1022763f1ff"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/7b328d1a-a186-4e20-9d4a-b1022763f1ff" alt="image" style="max-width: 100%;"></a></p>
+<p>还有这个blog.tech-shrimp.cloudns.be的解析也不好，好多地方也没解析成功。我还试了一下ddns go，这里我保存一下，可以看到这个提示，这里ddns go也没有配置成功。所以总的来说，这种免费域名还是有很多问题的。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
