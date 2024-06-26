@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>韭菜编程博客</title><link>https://wqlabs.github.io</link><description>我是韭菜编程博客，记录日常，分享韭菜成长经验。</description><copyright>韭菜编程博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/39255755?v=4</url><title>avatar</title><link>https://wqlabs.github.io</link></image><lastBuildDate>Mon, 24 Jun 2024 09:49:06 +0000</lastBuildDate><managingEditor>韭菜编程博客</managingEditor><ttl>60</ttl><webMaster>韭菜编程博客</webMaster><item><title>三年程序员面试经验</title><link>https://wqlabs.github.io/post/san-nian-cheng-xu-yuan-mian-shi-jing-yan.html</link><description>感谢 五月的仓颉  的这篇文章 , 让我重新认识到自己身上的不足之处 
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>韭菜编程博客</title><link>https://wqlabs.github.io</link><description>我是韭菜编程博客，记录日常，分享韭菜成长经验。</description><copyright>韭菜编程博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/39255755?v=4</url><title>avatar</title><link>https://wqlabs.github.io</link></image><lastBuildDate>Wed, 26 Jun 2024 08:38:11 +0000</lastBuildDate><managingEditor>韭菜编程博客</managingEditor><ttl>60</ttl><webMaster>韭菜编程博客</webMaster><item><title>几个常见用于解决nginx负载均衡的session共享问题的办法</title><link>https://wqlabs.github.io/post/ji-ge-chang-jian-yong-yu-jie-jue-nginx-fu-zai-jun-heng-de-session-gong-xiang-wen-ti-de-ban-fa.html</link><description>查了一些资料，看了一些别人写的文档，总结如下，实现nginx session的共享：&#13;
+&#13;
+PHP服务器有多台，用nginx做负载均衡，这样同一个IP访问同一个页面会被分配到不同的服务器上，如果session不同步的话，就会出现很多问题，比如说最常见的登录状态，下面提供了几种方式来解决session共享的问题：&#13;
+&#13;
+## 1、不使用session，换用cookie&#13;
+session是存放在服务器端的，cookie是存放在客户端的，我们可以把用户访问页面产生的session放到cookie里面，就是以cookie为中转站。</description><guid isPermaLink="true">https://wqlabs.github.io/post/ji-ge-chang-jian-yong-yu-jie-jue-nginx-fu-zai-jun-heng-de-session-gong-xiang-wen-ti-de-ban-fa.html</guid><pubDate>Wed, 26 Jun 2024 08:37:45 +0000</pubDate></item><item><title>三年程序员面试经验</title><link>https://wqlabs.github.io/post/san-nian-cheng-xu-yuan-mian-shi-jing-yan.html</link><description>感谢 五月的仓颉  的这篇文章 , 让我重新认识到自己身上的不足之处 
 
 前言
 
