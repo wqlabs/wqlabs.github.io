@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# Loon新手起步折腾Warp
+
+## 前言：
+
+最近没什么可以折腾的，加上Loon最近的更新支持了WireGuard协议，所以去Loon群的次数多了一点，然后有人建议我写个Loon从入门到退款，本来都已经建好了文件，结果一查，Loon官方群里本来就已经有写好的官方和非官方的教程，而且都挺好，让我来写也没什么新意，于是转念一想，干脆写一下Loon上抓Warp的WireGuard教程算了，虽然熟悉的人知道步骤和Surge上是一样的，但是总会有些不熟悉的来问，干脆另起一篇，于是卸载Loon重新安装，从起步开始折腾吧。">
+<meta property="og:title" content="Loon新手起步折腾Warp">
+<meta property="og:description" content="# Loon新手起步折腾Warp
+
+## 前言：
+
+最近没什么可以折腾的，加上Loon最近的更新支持了WireGuard协议，所以去Loon群的次数多了一点，然后有人建议我写个Loon从入门到退款，本来都已经建好了文件，结果一查，Loon官方群里本来就已经有写好的官方和非官方的教程，而且都挺好，让我来写也没什么新意，于是转念一想，干脆写一下Loon上抓Warp的WireGuard教程算了，虽然熟悉的人知道步骤和Surge上是一样的，但是总会有些不熟悉的来问，干脆另起一篇，于是卸载Loon重新安装，从起步开始折腾吧。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/Loon-xin-shou-qi-bu-zhe-teng-Warp.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>Loon新手起步折腾Warp</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Loon新手起步折腾Warp</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/19" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Loon新手起步折腾Warp</h1>
+<h2>前言：</h2>
+<p>最近没什么可以折腾的，加上Loon最近的更新支持了WireGuard协议，所以去Loon群的次数多了一点，然后有人建议我写个Loon从入门到退款，本来都已经建好了文件，结果一查，Loon官方群里本来就已经有写好的官方和非官方的教程，而且都挺好，让我来写也没什么新意，于是转念一想，干脆写一下Loon上抓Warp的WireGuard教程算了，虽然熟悉的人知道步骤和Surge上是一样的，但是总会有些不熟悉的来问，干脆另起一篇，于是卸载Loon重新安装，从起步开始折腾吧。</p>
+<h2>免责声明：</h2>
+<p>本文涉及的任何解锁和解密分析脚本仅用于资源共享和学习研究，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。</p>
+<p>间接使用脚本的任何用户，包括但不限于建立VPS或在某些行为违反国家/地区法律或相关法规的情况下进行传播, 本文作者对于由此引起的任何隐私泄漏或其他后果概不负责。</p>
+<p>请勿将本文内的任何内容用于商业或非法目的，否则后果自负。</p>
+<p>如果任何单位或个人认为该项目的脚本可能涉嫌侵犯其权利，则应及时通知并提供身份证明，所有权证明，我将在收到认证文件后删除相关脚本。</p>
+<p>对任何本文中包含的脚本在使用中可能出现的问题概不负责，包括但不限于由任何脚本错误导致的任何损失或损害．</p>
+<p>您必须在下载后的24小时内从计算机或手机中完全删除以上内容。</p>
+<p>任何以任何方式查看此项目的人或直接或间接使用该项目的任何脚本的使用者都应仔细阅读此声明。本文作者保留随时更改或补充此免责声明的权利。一旦使用并复制了任何本文相关脚本或其他内容，则视为您已接受此免责声明。</p>
+<h2>简介：</h2>
+<p>以下部份来自官方文档：</p>
+<h3>Loon是什么</h3>
+<p>Loon是一个集网络代理、网络调试、网络改写等一系列功能于一体的网络工具。</p>
+<h3>网络代理</h3>
+<ul>
+<li>支持常见的代理协议，http、https、Shadowsocks、ShadowsocksR、VMess、VLess、Trojan、WireGuard</li>
+<li>能够代理TCP和UDP（仅Shadowsocks、ShadowsocksR、Trojan协议支持）数据</li>
+<li>支持IPv4和IPv6</li>
+</ul>
+<h3>网络调试</h3>
+<ul>
+<li>使用MitM攻击方式可以查看详细的https请求</li>
+<li>详细记录一个连接的请求过程，方便调试网络问题</li>
+</ul>
+<h3>网络改写</h3>
+<ul>
+<li>使用Rewrite功能快速修改一个http(s)请求的请求头或者直接返回一个请求体</li>
+<li>使用JavaScript修改一个http(s)请求的任何数据</li>
+</ul>
+<p>简单说就是跟Surge、Shadowrocket、Clash、Quantumult X等类似的iOS平台网络工具，对比其他App个人感觉有如下优势：</p>
+<ol>
+<li>价格合适</li>
+<li>提供图形化界面进行管理和配置，基本上常用操作均可通过UI进行</li>
+<li>界面简单美观</li>
+<li>功能强大</li>
+<li>开发者和群众直接沟通</li>
+</ol>
+<p>可以说比起Shadowrocket和Quantumult X更适合新手。</p>
+<p>界面见下图：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/3817a5a2-642d-4cab-b012-953346b67cd1"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/3817a5a2-642d-4cab-b012-953346b67cd1" alt="image" style="max-width: 100%;"></a></p>
+<h2>快速上手：</h2>
+<p>开始使用前的准备工作：</p>
+<p>在第一次打开Loon的时候，它会询问你需要以下网络权限：</p>
+<ul>
+<li>无线局域网与蜂窝数据</li>
+<li>本地网络</li>
+<li>添加VPN配置</li>
+</ul>
+<p>请都选择<strong>允许并按照系统指引</strong>进行设置。</p>
+<p><strong>以下部份来自官方手册</strong></p>
+<p>新安装的Loon自带一个简易的配置，所以只需要导入节点或者导入订阅节点就能使用，具体步骤如下：</p>
+<p><strong>首次添加订阅节点：</strong></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f5c11981-b912-4196-a82e-de159e110adc"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f5c11981-b912-4196-a82e-de159e110adc" alt="image" style="max-width: 100%;"></a></p>
+<p><strong>首次添加单个节点：</strong></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/69f47775-5a66-4670-80ef-89c6c8b0562a"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/69f47775-5a66-4670-80ef-89c6c8b0562a" alt="image" style="max-width: 100%;"></a></p>
+<p>在根据上述操作添加完订阅后，你的Loon就已经属于可用状态了。</p>
+<p>接下来我们开始进行Warp阶段的一些操作了。</p>
+<h2>一些必要设置及证书安装</h2>
+<p>提示：如果你已经将脚本、复写、MitM打开，并且已经安装并信任了证书，则下面这一段可以跳过。</p>
+<p>首先进入配置页面，将脚本、复写、MitM这三个开关都打开，如下图：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/d8428d81-e579-4406-aa7c-8b364662a592"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/d8428d81-e579-4406-aa7c-8b364662a592" alt="image" style="max-width: 100%;"></a></p>
+<p>接下来需要进入到设置的MitM的域名设置里面，将MitM over HTTP/2 开关打开</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e894e5a4-c3c4-49c6-9a5a-4cfdf168610a"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e894e5a4-c3c4-49c6-9a5a-4cfdf168610a" alt="image" style="max-width: 100%;"></a></p>
+<p>接下来是安装证书并且信任，文字步骤如下：</p>
+<p>设置-证书管理-（如果有证书）安装CA证书-允许描述文件-选取设备iPhone-设置-已下载描述文件-安装描述文件-输入密码-安装-通用-关于本机-拉到底部的证书信任设置-点上Loon对应证书。</p>
+<p>图片步骤见下面的图示：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/276358e1-43dc-4db3-b792-08232932edec"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/276358e1-43dc-4db3-b792-08232932edec" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/bd9b55b4-7b0e-48b0-9611-9284434bbcca"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/bd9b55b4-7b0e-48b0-9611-9284434bbcca" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/a847d671-e52d-41fb-bad5-2d89756ecf46"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/a847d671-e52d-41fb-bad5-2d89756ecf46" alt="image" style="max-width: 100%;"></a></p>
+<h2>什么是WARP</h2>
+<p>WARP是cloudflare公司推出的可以用来保护使用者隐私的一款服务，对于经常使用WARP来解锁vps流媒体的人再熟悉不过了。</p>
+<p>WARP基于wireguard协议，使用UDP来传输数据，也就意味着在公网中的高QOS，但是WARP的ip相对比较干净，对外访问网络的出口 IP 被很多网站视为真实用户，可以用来解锁流媒体，谷歌学术以及目前很火的openai、new bing等。</p>
+<p>除了保护使用者隐私和解锁流媒体，WARP还有以下几个特点：</p>
+<ol>
+<li>更安全：WARP使用的是最新的Wireguard协议，这种协议比现有的VPN协议更加安全可靠，并且具有更快的连接速度和更低的延迟。</li>
+<li>更快速：WARP提供了更快速的网络连接，它利用了Cloudflare的全球CDN网络来提供更快的数据传输速度和更好的用户体验。</li>
+<li>更可靠：WARP是专门为移动网络和Wi-Fi网络优化的，它可以帮助用户在连接不稳定的网络时保持稳定的网络连接状态。</li>
+<li>全球化：WARP可以连接到全球各地的服务器，并且可以通过点选连接，选择所需要的VPN服务节点。</li>
+<li>免费使用：WARP的基本版本是免费使用的，它提供了足够的保护和增强体验的功能。如果需要更高级的服务功能，则需要付费升级到专业版。</li>
+</ol>
+<p>总而言之，WARP是一个十分实用的VPN服务，它结合了安全、快速、可靠等多个特点，可以为用户提供更好的网络连接体验。同时，WARP还提供了免费的基础版本，方便用户体验其服务。</p>
+<p>而针对个人用户，Cloudflare推出的免费的Warp（可以通过邀请新用户获得Warp+流量）和订阅版Warp+（无限流量），针对团体用户推出的叫做：Zero Trust（无限流量，但是不同等级有不同的人数限制，免费的50人以内，超过就需要付费），两个其实是同一个东西。</p>
+<ul>
+<li>注：</li>
+</ul>
+<p>基于WARP以上特性，本文只是提取warp的节点用别的代理软件使用（如Surge、LOON等），本质上与1.1.1.1官方客户端使用相同。</p>
+<h2>下载1.1.1.1 App</h2>
+<p>下面链接是日本区的，你们可以直接在自己的App Store搜索1.1.1.1</p>
+<p><a href="https://apps.apple.com/jp/app/1-1-1-1-faster-internet/id1423538627" rel="nofollow">https://apps.apple.com/jp/app/1-1-1-1-faster-internet/id1423538627</a></p>
+<h2>注册一个cloudflare帐号</h2>
+<p>注册帐号操作建议在电脑上进行。</p>
+<h4><strong>我这里仅根据下面教程和实际大家注册过程中的一些问题做一些提示：</strong></h4>
+<ul>
+<li>
+<p>有些人在注册Zero Trust过程中，发现并不能如同文中所提到那样跳过付款，那么我的建议是添加一个付款方式，支持PayPal、Visa、Master、AE等;</p>
+</li>
+<li>
+<p>如果你实在不想添加付款方式又想玩，那么可以选择加入别人的ZearoTrust Team，我可以提供一下我的团队名：</p>
+<p>GetMoreCats,验证方式为gmail邮箱;</p>
+</li>
+<li>
+<p>如果设置过程中发现device里面是空白的，这时候去左边的setting里面有个warp client，进去后有个mange 里面添加设备验证规则即可，验证规则一般建议选择邮箱后缀（Emails ending in）：<a href="http://gmail.com" rel="nofollow">gmail.com</a> 或者 <a href="http://outlook.com" rel="nofollow">outlook.com</a> 不太建议国内邮箱。顺便建议如果有电脑，最好在电脑上进行设置更方便。</p>
+</li>
+<li>
+<p>在setting里面Authentication里面的Login methods记得选择<strong>One-time PIN</strong>，这样才能在登陆时候收到邮件发送过来的一次性认证PIN</p>
+</li>
+<li>
+<p>如果还有其他问题可以进<a href="https://t.me/Loon0x00" rel="nofollow">Loon官方telegram群</a>找我：🐈🐈‍⬛🐈‍⬛整点猫咪️</p>
+</li>
+</ul>
+<p>按照下面链接教程：注册warp和加入一个team（Zero Trust），并用1.1.1.1 app进行一次链接以生成数据</p>
+<p>教程：<a href="https://surge.tel/?p=2116" rel="nofollow">https://surge.tel/?p=2116</a></p>
+<p>2023.4.9补充：如果你看了上面的zero trust教程觉得没法解决其中某些问题，可以直接使用warp+（个人版）下面已经补充warp+的操作。</p>
+<p>2023.6.17日补充：如果无基础的/折腾不好zero team的建议直接使用warp+，在实际使用中无任何区别。</p>
+<h2>下载WireGuard App</h2>
+<p>下面链接是日本区的，你们可以直接在自己的App Store搜索WireGuard</p>
+<p><a href="https://apps.apple.com/jp/app/wireguard/id1441195209" rel="nofollow">https://apps.apple.com/jp/app/wireguard/id1441195209</a></p>
+<h2>安装Boxjs以及薯条的clouflare插件：</h2>
+<p>首先安装Loon社区制作的插件仓库：</p>
+<p><a href="https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Tool/Loon/Plugin/LoonGallery.plugin" rel="nofollow">https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Tool/Loon/Plugin/LoonGallery.plugin</a></p>
+<p>或者通过这里<a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Tool/Loon/Plugin/LoonGallery.plugin" rel="nofollow">一键添加插件仓库</a></p>
+<p>安装方法：</p>
+<p>配置-插件-右上角添加-URL中粘贴上面地址-信任插件安装，并且按照图示的点击进入插件仓库</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/efc2af77-f4ed-467a-bf3e-74e5b4b76f4c"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/efc2af77-f4ed-467a-bf3e-74e5b4b76f4c" alt="image" style="max-width: 100%;"></a></p>
+<p>安装boxjs插件并订阅薯条的脚本json：</p>
+<p>薯条的脚本json地址：</p>
+<p><a href="https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/BoxJs/Cloudflare.boxjs.json" rel="nofollow">https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/BoxJs/Cloudflare.boxjs.json</a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f24b7486-c610-46f2-9da8-b79c3c4482c9"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f24b7486-c610-46f2-9da8-b79c3c4482c9" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/54a01365-ff27-46c9-a9b3-acb450f7ec6f"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/54a01365-ff27-46c9-a9b3-acb450f7ec6f" alt="image" style="max-width: 100%;"></a></p>
+<p>安装薯条的插件：</p>
+<p>在插件仓库中找到：VIRGICLYNE/CLOUDFLARE点开后选择右边的安装按钮按照上面教过的步骤进行安装</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/21ed1221-af5a-468d-8207-75723b691c82"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/21ed1221-af5a-468d-8207-75723b691c82" alt="image" style="max-width: 100%;"></a></p>
+<h3>附上不通过插件仓库的安装地址：</h3>
+<ul>
+<li>boxjs插件：</li>
+</ul>
+<p>手动安装：</p>
+<p><a href="https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/BoxJs/Cloudflare.boxjs.json" rel="nofollow">https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/BoxJs/Cloudflare.boxjs.json</a></p>
+<p>☁ <a href="https://github.com/VirgilClyne/Cloudflare/wiki/%E2%98%81-1.1.1.1-by-Cloudflare-with-WARP">1.1.1.1 by Cloudflare with WARP</a></p>
+<ul>
+<li>
+<p>Loon:</p>
+<ul>
+<li>
+<p>点击一键安装: <a href="https://api.boxjs.app/loon/import?plugin=https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/modules/Cloudflare.1.1.1.1.plugin" rel="nofollow">Cloudflare.1.1.1.1.plugin</a></p>
+</li>
+<li>
+<p><code class="notranslate">插件</code>链接: <a href="https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/modules/Cloudflare.1.1.1.1.plugin" rel="nofollow">Cloudflare.1.1.1.1.plugin</a></p>
+</li>
+<li>
+<p>薯条的boxjs订阅：</p>
+<p><code class="notranslate">https://raw.githubusercontent.com/VirgilClyne/Cloudflare/main/BoxJs/Cloudflare.boxjs.json</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>通过Wireguard app生成一堆密钥</h3>
+<p>打开wireguard app添加隧道-手动创建-生成密钥对，将生成的公钥和私钥都复制出来，保存在备忘录并做好备注公钥、私钥。本次教程中wireguard的唯一作用就是生成一对密钥。</p>
+<p>提示：建议先复制公钥再复制私钥，因为进行app间程序切换回来，公钥似乎会消失；复制私钥时候用全选再复制，避免漏字母</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/8d8219a3-f5ea-475c-a7b9-2217e16b3739"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/8d8219a3-f5ea-475c-a7b9-2217e16b3739" alt="image" style="max-width: 100%;"></a></p>
+<h2>boxjs中的设置：</h2>
+<p>根据上面的教程我们已经安装并且配置好了boxjs，进入薯条的cloudflare 1.1.1.1，按照提示填入设备ID和在上一步Wireguard App中生成的一对密钥，按照提示位置贴好设备ID、私钥和公钥。</p>
+<p>设备ID可在1.1.1.1 app的设置-诊断中找到，复制并保存</p>
+<p><strong>Zero Trust下的操作</strong>：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/eba3f373-ae9d-4b39-b120-514bc5afff58"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/eba3f373-ae9d-4b39-b120-514bc5afff58" alt="image" style="max-width: 100%;"></a></p>
+<p><strong>Warp+下的操作</strong>：</p>
+<p>通过更改key获取流量</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/5fcd191d-cf01-4a7f-9569-2ae6cba7bb69"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/5fcd191d-cf01-4a7f-9569-2ae6cba7bb69" alt="image" style="max-width: 100%;"></a></p>
+<p>备注：关注telegram频道：<a href="https://t.me/warpplus" rel="nofollow">https://t.me/warpplus</a> ，会定时推送key，自己选一个按上面步骤填入即可；可以自己邀请朋友注册获得流量，因为第三方App（Loon、Surge、小火箭等）使用warp+消耗的流量并不会计入账户（只有通过1.1.1.1 App链接消耗的会计入），所以实际上只需要邀请一个朋友注册获得1G流量即可，也可以通过内购的方式获得每月无限流量（土区约4元/月）</p>
+<p>在设置-高级-诊断页面客户端配置下的ID中找到设备的ID</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/626b27f2-c30a-469c-aa61-48cecabd63e6"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/626b27f2-c30a-469c-aa61-48cecabd63e6" alt="image" style="max-width: 100%;"></a></p>
+<p>注意：<strong>以下操作是建立在Loon运行过程中</strong>：</p>
+<p>在boxjs中填好相应字段并保存：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/d11c7013-1382-42a6-b833-55b3fa82a766"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/d11c7013-1382-42a6-b833-55b3fa82a766" alt="image" style="max-width: 100%;"></a></p>
+<p><strong>Zero Trust下：</strong></p>
+<p>接下来进入到1.1.1.1 app的设置-高级-连接选项-拉到底部，重置加密密钥，就会出现Loon的通知打开即是生成的配置文件</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/846e74ee-0f47-4b97-b129-ccfda612824c"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/846e74ee-0f47-4b97-b129-ccfda612824c" alt="image" style="max-width: 100%;"></a></p>
+<p><strong>Warp+下</strong>：</p>
+<p>进入到1.1.1.1 app的设置-高级-连接选项-拉到底部，重置加密密钥，也是和zero trust一样的操作过程。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/0e29c8fb-2dca-488b-a45e-f684977647b6"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/0e29c8fb-2dca-488b-a45e-f684977647b6" alt="image" style="max-width: 100%;"></a></p>
+<p><strong>提醒：在系统自带的邮件客户端里面添加一个可用邮箱，不然会收不到邮件通知，可以将收到的邮件发送给自己便于保存。</strong></p>
+<p>将生成的配置文件复制并粘贴到Loon的Proxy字段里面去，即可使用啦。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/a9fd43d4-be46-4d21-b609-4199e739485c"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/a9fd43d4-be46-4d21-b609-4199e739485c" alt="image" style="max-width: 100%;"></a></p>
+<p>生成配置和Loon中填入字段对应如下图：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e02a72d8-c85e-4764-9bc1-f943487a252f"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/e02a72d8-c85e-4764-9bc1-f943487a252f" alt="image" style="max-width: 100%;"></a></p>
+<p>如果你不想折腾，这里有一个配置：</p>
+<p><code class="notranslate">WARP = wireguard, interface-ip=172.16.0.2, interface-ipv6=2606:4700:110:832c:b21b:4f99:f9fa:417b, private-key="2JkWiH65BRnIZTr5y4i4XVPkYnWZ9Vr18FkpWEc7aEQ=", mtu=1280, dns=162.159.36.1, dnsv6=2606:4700:4700::1111, keepalive=45, peers=[{public-key="bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=", allowed-ips="0.0.0.0/0, ::/0", endpoint=engage.nanocat.me:2408, reserved=[195,10,198]}]</code></p>
+<p><strong>最后要提醒的是，如果你已通过Loon获取了一组可用的 WireGuard 配置，那么建议卸载 1.1.1.1 这个应用程序，因为重启该应用时可能会自动重置密钥，导致之前获取的配置不再可用，必须重新获取。</strong></p>
+<p><strong>说明一下：目前转出来的节点，只有在电信网络下有比较好的体验，联通和移动的体验均不太好，请根据自己网络运营商看要不要折腾。</strong></p>
+<p>2023.03.30 补充一点：用薯条面板生成的配置的endpoint是engage.nanocat.me:2408，这个是他的私有DNS服务器，里面包含了所有warp的endpoint可用IP，包括free的，有些IP段在国内是不通的，这也是有些人有时候直连ping不通的原因，当时正好分配到不能用的IP，如果这样时候可以试试把endpoint改为：</p>
+<p>162.159.193.1～10:2408</p>
+<p>或者162.159.195.1～10:2408，</p>
+<p>注意不是上面的格式，而是从1～10中选一个去试</p>
+<p>最终格式应该是类似：162.159.193.5:2408</p>
+<p>或者</p>
+<p>162.159.195.8:2408</p>
+<p>这两个193、195段是Warp+服务的。</p>
+<p>千万不要直接填成1～10然后问为什么不行🫠</p>
+<p>或者直接用官方的域名地址：</p>
+<p>engage.cloudflareclient.com:2408</p>
+<p>然后更改endpoint的方法：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f4eb98bb-f29f-4b8e-9455-e6ae1acb9a44"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f4eb98bb-f29f-4b8e-9455-e6ae1acb9a44" alt="image" style="max-width: 100%;"></a></p>
+<p>2023.6.17 修订：在Loon TestFlight 3.1.0（573）中，增加了新的策略组类型Chain（代理链），可以将所选策略组连接起来形成代理链，Chain类型的策略组可以嵌套任意类型的策略组、节点，自动策略组（utl-test，fallback，loadbalance） 暂时不能将Chain策略组作为子策略，当前版本的代理链暂不支持UDP，后续会支持</p>
+<p>在Loon TestFlight 3.1.0（581）中已经增加了代理链对UDP的支持，至此，Loon也可以通过代理链使用wireguard（warp）了，同时因为开发者对于Loon的优化，所以在Loon上使用warp+（zero trust）转化来的wireguard，可以不用进行endpoint的优选，根据自己需要，通过代理链或者直连的方式进行使用。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
