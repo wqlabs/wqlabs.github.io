@@ -1,5 +1,4 @@
 
-
 > sing-box 是什么？它一个新的通用跨平台代理软件客户端，类似 v2rayN、Clash for Windows 等，但拥有更多新特性，并且目前少有同时支持 iOS 和 Apple TV 并且免费的代理应用，支持 Shadowsocks、Vmess、Trojan、Hysteria 2 等协议。
 
 ## 关于 sing-box
@@ -19,7 +18,7 @@ sing-box 由于支持新的 Reality 和 hysteria2 协议，目前多为自建节
 
 目前仅又少数机场原生提供 sing-box 订阅链接支持，比如 GLaDOS、[狗狗加速](https://panel.dg6.top/#/register?code=9ddB5bK3)等。
 
-## 自建节点
+## 自建节点服务端
 
 需要一台可以魔法上网的云服务器，比如香港的云主机或者境外的各种云主机.
 [官方网站](https://sing-box.sagernet.org/)对各种服务器环境提供了多种的安装部署方式，有仓库安装，手动安装，docker方式。
