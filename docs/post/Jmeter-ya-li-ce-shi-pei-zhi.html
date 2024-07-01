@@ -4,7 +4,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
@@ -105,8 +105,10 @@ b循环数为2时解释是（1个/s请求发5次）执行2遍（循环数），�
 用压测服务器最大的能力持续发送请求</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/59907f3b45afe6d95545d67d3bbafef277d1b9904b2ead6e6d1fc0b39e5cd841/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830383830332e706e67"><img src="https://camo.githubusercontent.com/59907f3b45afe6d95545d67d3bbafef277d1b9904b2ead6e6d1fc0b39e5cd841/687474703a2f2f696d672e636f64653532302e6e65742f626c6f672f3230323230363239313830383830332e706e67" alt="image-20220629180858681" data-canonical-src="http://img.code520.net/blog/202206291808803.png" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
+
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
 <div class="comments" id="comments"></div>
+
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
 <p>
@@ -161,6 +163,8 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5p
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
 
 function openComments(){
     cm=document.getElementById("comments");
