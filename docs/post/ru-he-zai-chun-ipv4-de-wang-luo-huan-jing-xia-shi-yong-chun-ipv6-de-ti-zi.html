@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 前言
+我们都知道随着网络发展，越来越多人接触网络，有限的ipv4地址必然会耗尽，那么为了满足越来越多人的网络需求，ipv6就应运而生了。">
+<meta property="og:title" content="如何在纯ipv4的网络环境下使用纯ipv6的梯子">
+<meta property="og:description" content="## 前言
+我们都知道随着网络发展，越来越多人接触网络，有限的ipv4地址必然会耗尽，那么为了满足越来越多人的网络需求，ipv6就应运而生了。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/ru-he-zai-chun-ipv4-de-wang-luo-huan-jing-xia-shi-yong-chun-ipv6-de-ti-zi.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>如何在纯ipv4的网络环境下使用纯ipv6的梯子</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">如何在纯ipv4的网络环境下使用纯ipv6的梯子</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/24" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>前言</h2>
+<p>我们都知道随着网络发展，越来越多人接触网络，有限的ipv4地址必然会耗尽，那么为了满足越来越多人的网络需求，ipv6就应运而生了。<br>
+当然，这中间并不只是这么简单，比如还存在国家与国家之间的博弈，但是不管如何，拥抱ipv6终归是正确的。</p>
+<h2>ipv4和ipv6的区别</h2>
+<p>要说有什么区别，其实两者都是网络上的地址，最最大的区别就是两者的数量了，这是由两者构成的格式决定的。<br>
+IPv4：数量 2^32 约43亿。格式为纯数字、4字段：例如bing的其中一个ipv4地址：204.79.197.200<br>
+IPv6：数量 2^128 几百万亿 号称能为地球的每一粒沙分配一个地址，可想而知能有多少。格式为字母+数字、8字段：如bing的其中一个ipv6地址：2620:1ec:c11::200<br>
+访问方式也有一定的不同：<br>
+ipv4：<a href="http://204.79.197.200/" rel="nofollow">http://204.79.197.200/</a><br>
+ipv6：http://[2620:1ec:c11::200/]/<br>
+其他的不是本文的重点，可以再自由探索。</p>
+<h2>正文</h2>
+<p>某些情况下，我们可能会有一些纯ipv6环境的vps（简单便宜，或者白嫖的等），而我们本机的网络环境有时候受限于路由器或者运营商以及系统等可能是只有ipv4。但是ipv4和ipv6的环境并不是互通的（连dns服务器都不一样，协议也不通），此时就可以跟着这边教程搭建一个能够访问的梯子了。</p>
+<h2>准备工作</h2>
+<ul>
+<li>一个cf的账号</li>
+<li>一台ipv6 only的vps</li>
+<li>一个域名（非必须）</li>
+</ul>
+<h2>使用ssh连接vps</h2>
+<p>假设我们本地环境只有ipv4，那么是无法直接使用ssh工具连接ipv6的vps的，此时有几种方式可以尝试下。</p>
+<ol>
+<li>使用手机连接，手机的网络是自带ipv6的，所以手机可以直接通过ssh工具连接ipv6的vps</li>
+<li>使用web ssh工具，使用搜索工具直接搜索关键词'web ssh'，随便找一个地址打开，稍微看一眼应该就知道如何使用了。但是这种最好使用密码的方式连接，如果用私钥的话很可能私钥就泄露了。<br>
+ssh连接成功之后就可以继续教程了。</li>
+</ol>
+<h2>开启warp</h2>
+<p>因为搭建梯子需要用到一些github上的脚本，而纯ipv6环境无法访问github，另外就是有些其他的网站对ipv6的兼容也比较差，所以咱们得让vps能够访问ipv4。<br>
+最简单的就是使用cf提供的warp了，已经有大佬帮我们写好了一键脚本，咱们直接执行即可。</p>
+<pre class="notranslate"><code class="notranslate">wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh &amp;&amp; bash menu.sh
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/6c3a5f51-5606-4bd2-b838-eb1dfad43447"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/6c3a5f51-5606-4bd2-b838-eb1dfad43447" alt="image" style="max-width: 100%;"></a></p>
+<p>输入2，回车。脚本会自动使用简体中文，并且安装必要的一些软件。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/d3af733e-8446-448b-9293-c58390bb43c6"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/d3af733e-8446-448b-9293-c58390bb43c6" alt="image" style="max-width: 100%;"></a></p>
+<h2>问题</h2>
+<ol>
+<li>如果你的vps配置较低，又装了其他的很多东西，那么有可能会出现安装软件失败的情况，如上图。<br>
+此时可以参考我上一篇教程，<a href="https://212234.xyz/archives/2024/01/164/" rel="nofollow">开启swap</a>，再重新执行脚本，可以解决此问题。<br>
+接着就是一些选择题，只需要按需选择即可完成。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f3bd7d90-7889-4033-bfec-80a04e229b20"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/f3bd7d90-7889-4033-bfec-80a04e229b20" alt="image" style="max-width: 100%;"></a></li>
+</ol>
+<h2>搭建梯子</h2>
+<p>开启warp之后就可以继续搭建梯子了。<br>
+搭建梯子非常简单，执行以下脚本</p>
+<pre class="notranslate"><code class="notranslate">bash &lt;(wget -qO- https://raw.githubusercontent.com/fscarmen/argox/main/argox.sh)
+
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/eb4148aa-7a4e-48c7-87ca-7e1802b1c4a1"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/eb4148aa-7a4e-48c7-87ca-7e1802b1c4a1" alt="image" style="max-width: 100%;"></a></p>
+<p>同样输入输入2，回车。脚本会自动使用简体中文，并且安装必要的一些软件。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/705f25f4-ac46-459d-9498-db48fb823619"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/705f25f4-ac46-459d-9498-db48fb823619" alt="image" style="max-width: 100%;"></a></p>
+<p>安装必要软件成功之后，来到如上图所示的界面。</p>
+<p>输入1，回车，再回车。<br>
+此时来到了输入域名的步骤，如果你没有准备域名，那么直接回车即可。否则只要输入自己的准备好的域名再回车，然后根据提示操作即可。<br>
+接着根据提示输入一个端口，我这里直接试用默认的，所以直接回车。<br>
+优选域名随便选择一个。<br>
+后面直接全部回车即可。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/241fb053-f0b0-4506-82bf-a32b77d77bdc"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/241fb053-f0b0-4506-82bf-a32b77d77bdc" alt="image" style="max-width: 100%;"></a></p>
+<p>最终选择如上图所示。</p>
+<p>执行完成会生成一批软件的导入链接，直接选择自己所用的梯子软件导入即可。<br>
+将导入的节点进行测试，此时你会发现，用于直连的两个节点怎么测都没有速度，但是其他几个域名节点可以正常使用。</p>
+<h2>原理</h2>
+<p>原理说起来，其实很简单，就是用到了CF的反代，我们的流量先经过CF提供的代理对应的ip，然后再反代到我们的vps上，从我们的vps出口。<br>
+而CF的反代域名是接受ipv4的流量的，因此就实现了咱们用ipv4访问自己的ipv6。<br>
+当然，搭梯子的方法并不止这一种，但是殊途同归都是需要有个中转服务的，要么使用专门的中转，要么就使用DNS代理，就看各位看官自己选择了。</p>
+<p>此时有些聪明的小伙伴或许会想：DNS代理能让我们用ipv4访问ipv6，那我能不能直接使用DNS代理，让我ssh连接ipv6呢？我这里直接给个答案：可以，但是要给钱，免费的DNS代理不支持SSH协议，所以如果想要达到你想要的效果，那么充钱吧。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
