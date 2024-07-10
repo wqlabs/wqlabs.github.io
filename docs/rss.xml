@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>韭菜编程博客</title><link>https://wqlabs.github.io</link><description>我是韭菜编程博客，记录日常，分享韭菜成长经验。</description><copyright>韭菜编程博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/39255755?v=4</url><title>avatar</title><link>https://wqlabs.github.io</link></image><lastBuildDate>Fri, 05 Jul 2024 00:19:09 +0000</lastBuildDate><managingEditor>韭菜编程博客</managingEditor><ttl>60</ttl><webMaster>韭菜编程博客</webMaster><item><title>如何在纯ipv4的网络环境下使用纯ipv6的梯子</title><link>https://wqlabs.github.io/post/ru-he-zai-chun-ipv4-de-wang-luo-huan-jing-xia-shi-yong-chun-ipv6-de-ti-zi.html</link><description>## 前言&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>韭菜编程博客</title><link>https://wqlabs.github.io</link><description>我是韭菜编程博客，记录日常，分享韭菜成长经验。</description><copyright>韭菜编程博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/39255755?v=4</url><title>avatar</title><link>https://wqlabs.github.io</link></image><lastBuildDate>Wed, 10 Jul 2024 01:30:49 +0000</lastBuildDate><managingEditor>韭菜编程博客</managingEditor><ttl>60</ttl><webMaster>韭菜编程博客</webMaster><item><title>什么是 JWT,如何基于 JWT 进行身份验证?</title><link>https://wqlabs.github.io/post/shen-me-shi-%20JWT%2C-ru-he-ji-yu-%20JWT%20-jin-xing-shen-fen-yan-zheng--.html</link><description>相关面试题如下：&#13;
+&#13;
+- 什么是 JWT?为什么要用 JWT？&#13;
+- JWT 由哪些部分组成？&#13;
+- 如何基于 JWT 进行身份验证？&#13;
+- JWT 如何防止 Token 被篡改？&#13;
+- 如何加强 JWT 的安全性？&#13;
+- 如何让 Token 失效？&#13;
+&#13;
+......&#13;
+## 什么是 JWT?&#13;
+JWT （JSON Web Token） 是目前最流行的跨域认证解决方案，是一种基于 Token 的认证授权机制。</description><guid isPermaLink="true">https://wqlabs.github.io/post/shen-me-shi-%20JWT%2C-ru-he-ji-yu-%20JWT%20-jin-xing-shen-fen-yan-zheng--.html</guid><pubDate>Wed, 10 Jul 2024 01:30:24 +0000</pubDate></item><item><title>如何在纯ipv4的网络环境下使用纯ipv6的梯子</title><link>https://wqlabs.github.io/post/ru-he-zai-chun-ipv4-de-wang-luo-huan-jing-xia-shi-yong-chun-ipv6-de-ti-zi.html</link><description>## 前言&#13;
 我们都知道随着网络发展，越来越多人接触网络，有限的ipv4地址必然会耗尽，那么为了满足越来越多人的网络需求，ipv6就应运而生了。</description><guid isPermaLink="true">https://wqlabs.github.io/post/ru-he-zai-chun-ipv4-de-wang-luo-huan-jing-xia-shi-yong-chun-ipv6-de-ti-zi.html</guid><pubDate>Fri, 05 Jul 2024 00:18:46 +0000</pubDate></item><item><title>了不起的hysteria(歇斯底里)，拯救垃圾线路的VPS</title><link>https://wqlabs.github.io/post/le-bu-qi-de-hysteria%28-xie-si-di-li-%29%EF%BC%8C-zheng-jiu-la-ji-xian-lu-de-VPS.html</link><description>## 前言&#13;
 首先还是介绍一下，hysteria是一款强大的代理协议，目前已经更新到第二代了。</description><guid isPermaLink="true">https://wqlabs.github.io/post/le-bu-qi-de-hysteria%28-xie-si-di-li-%29%EF%BC%8C-zheng-jiu-la-ji-xian-lu-de-VPS.html</guid><pubDate>Fri, 05 Jul 2024 00:14:22 +0000</pubDate></item><item><title>计算机行业缪论</title><link>https://wqlabs.github.io/post/ji-suan-ji-xing-ye-mou-lun.html</link><description>&gt;事先声明，此文来源互联网，不代表作者观点，文末有引用来源&#13;
 &#13;

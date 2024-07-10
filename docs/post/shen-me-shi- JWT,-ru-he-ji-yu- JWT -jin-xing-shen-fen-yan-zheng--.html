@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="相关面试题如下：
+
+- 什么是 JWT?为什么要用 JWT？
+- JWT 由哪些部分组成？
+- 如何基于 JWT 进行身份验证？
+- JWT 如何防止 Token 被篡改？
+- 如何加强 JWT 的安全性？
+- 如何让 Token 失效？
+
+......
+## 什么是 JWT?
+JWT （JSON Web Token） 是目前最流行的跨域认证解决方案，是一种基于 Token 的认证授权机制。">
+<meta property="og:title" content="什么是 JWT,如何基于 JWT 进行身份验证?">
+<meta property="og:description" content="相关面试题如下：
+
+- 什么是 JWT?为什么要用 JWT？
+- JWT 由哪些部分组成？
+- 如何基于 JWT 进行身份验证？
+- JWT 如何防止 Token 被篡改？
+- 如何加强 JWT 的安全性？
+- 如何让 Token 失效？
+
+......
+## 什么是 JWT?
+JWT （JSON Web Token） 是目前最流行的跨域认证解决方案，是一种基于 Token 的认证授权机制。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/shen-me-shi-%20JWT%2C-ru-he-ji-yu-%20JWT%20-jin-xing-shen-fen-yan-zheng--.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>什么是 JWT,如何基于 JWT 进行身份验证?</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">什么是 JWT,如何基于 JWT 进行身份验证?</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/25" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>相关面试题如下：</p>
+<ul>
+<li>什么是 JWT?为什么要用 JWT？</li>
+<li>JWT 由哪些部分组成？</li>
+<li>如何基于 JWT 进行身份验证？</li>
+<li>JWT 如何防止 Token 被篡改？</li>
+<li>如何加强 JWT 的安全性？</li>
+<li>如何让 Token 失效？</li>
+</ul>
+<p>......</p>
+<h2>什么是 JWT?</h2>
+<p>JWT （JSON Web Token） 是目前最流行的跨域认证解决方案，是一种基于 Token 的认证授权机制。从 JWT 的全称可以看出，JWT 本身也是 Token，一种规范化之后的 JSON 结构的 Token。</p>
+<p>Token 自身包含了身份验证所需要的所有信息，因此，我们的服务器不需要存储 Session 信息。这显然增加了系统的可用性和伸缩性，大大减轻了服务端的压力。</p>
+<p>可以看出，JWT 更符合设计 RESTful API 时的「Stateless（无状态）」原则 。</p>
+<p>并且， 使用 Token 认证可以有效避免 CSRF 攻击，因为 Token 一般是存在在 localStorage 中，使用 JWT 进行身份验证的过程中是不会涉及到 Cookie 的。</p>
+<p>我在 JWT 优缺点分析[1]这篇文章中有详细介绍到使用 JWT 做身份认证的优势和劣势。</p>
+<p>下面是 RFC 7519[2] 对 JWT 做的较为正式的定义。</p>
+<blockquote>
+<p>JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted. ——JSON Web Token (JWT)[3]</p>
+</blockquote>
+<h2>JWT 由哪些部分组成？</h2>
+<p>JWT 本质上就是一组字串，通过（.）切分成三个为 Base64 编码的部分：</p>
+<ul>
+<li>Header : 描述 JWT 的元数据，定义了生成签名的算法以及 Token 的类型。</li>
+<li>Payload : 用来存放实际需要传递的数据</li>
+<li>Signature（签名） ：服务器通过 Payload、Header 和一个密钥(Secret)使用 Header 里面指定的签名算法（默认是 HMAC SHA256）生成。</li>
+</ul>
+<p>JWT 通常是这样的：xxxxx.yyyyy.zzzzz。</p>
+<p>示例：</p>
+<pre class="notranslate"><code class="notranslate">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+</code></pre>
+<p>你可以在 jwt.io[4] 这个网站上对其 JWT 进行解码，解码之后得到的就是 Header、Payload、Signature 这三部分。</p>
+<p>Header 和 Payload 都是 JSON 格式的数据，Signature 由 Payload、Header 和 Secret(密钥)通过特定的计算公式和加密算法得到。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/78e15f5f-f06e-4dd8-85eb-ef95a5557ce0"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/78e15f5f-f06e-4dd8-85eb-ef95a5557ce0" alt="image" style="max-width: 100%;"></a></p>
+<h3>Header</h3>
+<p>Header 通常由两部分组成：</p>
+<p>typ（Type）：令牌类型，也就是 JWT。<br>
+alg（Algorithm） ：签名算法，比如 HS256。<br>
+示例：</p>
+<pre class="notranslate"><code class="notranslate">{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+</code></pre>
+<p>JSON 形式的 Header 被转换成 Base64 编码，成为 JWT 的第一部分。</p>
+<h3>Payload</h3>
+<p>Payload 也是 JSON 格式数据，其中包含了 Claims(声明，包含 JWT 的相关信息)。</p>
+<p>Claims 分为三种类型：</p>
+<ul>
+<li>Registered Claims（注册声明） ：预定义的一些声明，建议使用，但不是强制性的。</li>
+<li>Public Claims（公有声明） ：JWT 签发方可以自定义的声明，但是为了避免冲突，应该在 IANA JSON Web Token Registry[5] 中定义它们。</li>
+<li>Private Claims（私有声明） ：JWT 签发方因为项目需要而自定义的声明，更符合实际项目场景使用。</li>
+</ul>
+<p>下面是一些常见的注册声明：</p>
+<ul>
+<li>iss（issuer）：JWT 签发方。</li>
+<li>iat（issued at time）：JWT 签发时间。</li>
+<li>sub（subject）：JWT 主题。</li>
+<li>aud（audience）：JWT 接收方。</li>
+<li>exp（expiration time）：JWT 的过期时间。</li>
+<li>nbf（not before time）：JWT 生效时间，早于该定义的时间的 JWT 不能被接受处理。</li>
+<li>jti（JWT ID）：JWT 唯一标识。</li>
+</ul>
+<p>示例：</p>
+<pre class="notranslate"><code class="notranslate">{
+  "uid": "ff1212f5-d8d1-4496-bf41-d2dda73de19a",
+  "sub": "1234567890",
+  "name": "John Doe",
+  "exp": 15323232,
+  "iat": 1516239022,
+  "scope": ["admin", "user"]
+}
+</code></pre>
+<p>Payload 部分默认是不加密的，一定不要将隐私信息存放在 Payload 当中！！！</p>
+<p>JSON 形式的 Payload 被转换成 Base64 编码，成为 JWT 的第二部分。</p>
+<h3>Signature</h3>
+<p>Signature 部分是对前两部分的签名，作用是防止 Token（主要是 payload） 被篡改。</p>
+<p>这个签名的生成需要用到：</p>
+<ul>
+<li>Header + Payload。</li>
+<li>存放在服务端的密钥(一定不要泄露出去)。</li>
+<li>签名算法。</li>
+</ul>
+<p>签名的计算公式如下：</p>
+<pre class="notranslate"><code class="notranslate">HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+</code></pre>
+<p>算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（.）分隔，成为 JWT 的第三部分。</p>
+<h2>如何基于 JWT 进行身份验证？</h2>
+<p>在基于 Token 进行身份验证的的应用程序中，服务器通过 Payload、Header 和 Secret(密钥)创建Token（令牌）并将 Token 发送给客户端。客户端接收到 Token 之后，会将其保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/59fe0477-2c6c-407b-91c0-041985bef8e6"><img src="https://github.com/wqlabs/wqlabs.github.io/assets/39255755/59fe0477-2c6c-407b-91c0-041985bef8e6" alt="image" style="max-width: 100%;"></a></p>
+<p>简化后的步骤如下：</p>
+<p>用户向服务器发送用户名、密码以及验证码用于登陆系统。<br>
+如果用户用户名、密码以及验证码校验正确的话，服务端会返回已经签名的 Token。<br>
+用户以后每次向后端发请求都在 Header 中带上这个 Token。<br>
+服务端检查 Token 并从中获取用户相关信息。<br>
+两点建议：</p>
+<p>建议将 Token 存放在 localStorage 中，放在 Cookie 中会有 CSRF 风险。<br>
+请求服务端并携带 Token 的常见做法是将 Token 放在 HTTP Header 的 Authorization 字段中（Authorization: Bearer Token）。<br>
+spring-security-jwt-guide[6] 就是一个基于 JWT 来做身份认证的简单案例，感兴趣的可以看看。</p>
+<h2>JWT 如何防止 Token 被篡改？</h2>
+<p>有了签名之后，即使 Token 被泄露或者解惑，黑客也没办法同时篡改 Signature 、Header 、Payload。<br>
+这是为什么呢？因为服务端拿到 Token 之后，会解析出其中包含的 Header、Payload 以及 Signature 。服务端会根据 Header、Payload、密钥再次生成一个 Signature。拿新生成的 Signature 和 Token 中的 Signature 作对比，如果一样就说明 Header 和 Payload 没有被修改。</p>
+<p>不过，如果服务端的秘钥也被泄露的话，黑客就可以同时篡改 Signature 、Header 、Payload 了。黑客直接修改了 Header 和 Payload 之后，再重新生成一个 Signature 就可以了。</p>
+<p>密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。</p>
+<h2>如何加强 JWT 的安全性？</h2>
+<ol>
+<li>使用安全系数高的加密算法。</li>
+<li>使用成熟的开源库，没必要造轮子。</li>
+<li>Token 存放在 localStorage 中而不是 Cookie 中，避免 CSRF 风险。</li>
+<li>一定不要将隐私信息存放在 Payload 当中。</li>
+<li>密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。</li>
+<li>Payload 要加入 exp （JWT 的过期时间），永久有效的 JWT 不合理。并且，JWT 的过期时间不易过长。</li>
+</ol></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
