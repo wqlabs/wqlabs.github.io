@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 背景
+近期，由于个别用户在 Docker Hub 上传了领导人的 AI 语音项目，导致中国区的 Docker 官方仓库被封锁。">
+<meta property="og:title" content="如何使用 Cloudflare Workers 自建 Docker 镜像代理">
+<meta property="og:description" content="## 背景
+近期，由于个别用户在 Docker Hub 上传了领导人的 AI 语音项目，导致中国区的 Docker 官方仓库被封锁。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/ru-he-shi-yong-%20Cloudflare%20Workers%20-zi-jian-%20Docker%20-jing-xiang-dai-li.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>如何使用 Cloudflare Workers 自建 Docker 镜像代理</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">如何使用 Cloudflare Workers 自建 Docker 镜像代理</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/30" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>背景</h2>
+<p>近期，由于个别用户在 Docker Hub 上传了领导人的 AI 语音项目，导致中国区的 Docker 官方仓库被封锁。在这一事件的影响下，国内所有 Docker 镜像服务均被迫下架，涵盖了阿里云镜像服务、上海交通大学镜像服务等。此外，Docker Hub 的官方域名也遭到封锁。</p>
+<p>此次 Docker Hub 的封锁给国内依赖 Docker 的开发和运维团队带来了重大挑战。首先，团队成员无法直接从 Docker Hub 拉取或推送镜像，这直接影响了软件的开发和部署效率。此外，依赖 Docker 镜像的自动化构建和持续集成/持续部署（CI/CD）流程也因此受到阻碍，增加了项目管理的复杂性和时间成本。团队不得不花费额外时间和资源寻找并配置国内的替代 Docker 镜像源或私有镜像仓库，这不仅增加了工作量，还可能带来额外的安全性和稳定性问题。</p>
+<p>尽管面临种种挑战，但通过使用 Cloudflare Worker 自建镜像代理，我们能有效绕开这些访问限制，确保顺畅获取所需的 Docker 镜像。在接下来的内容中，我将详细介绍如何利用 Cloudflare Worker 自建镜像代理，为你的项目恢复正常的开发和部署流程，确保技术团队可以继续高效工作。</p>
+<h2>前提条件</h2>
+<p>在开始之前，你需要准备一个域名和一个 Cloudflare 账号。</p>
+<h2>操作步骤</h2>
+<p>Step 1: 创建 Worker<br>
+在 Cloudflare 创建一个 Worker，如命名为 docker，然后将以下代码粘贴到 Worker 中，并点击 部署：</p>
+<pre class="notranslate"><code class="notranslate">addEventListener("fetch", (event) =&gt; {
+  event.passThroughOnException();
+  event.respondWith(handleRequest(event.request));
+});
+
+const dockerHub = "https://registry-1.docker.io";
+const HTML = `
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;link rel="shortcut icon" href="https://xiaowangye.org/assets/img/favicons/favicon.ico"&gt;
+    &lt;title&gt;Docker 镜像代理使用说明&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: #fff;
+        }
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        a {
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            .header {
+                padding: 15px 0;
+            }
+        }
+    &lt;/style&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Source+Code+Pro:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;Docker 镜像代理使用说明&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="content"&gt;
+          &lt;h3&gt;带镜像仓库地址使用说明&lt;/h3&gt;
+          &lt;p&gt;1.拉取镜像&lt;/p&gt;
+          &lt;pre&gt;&lt;code&gt;# 拉取 redis 官方镜像（不带命名空间）
+docker pull /redis
+
+# 拉取 rabbitmq 官方镜像
+docker pull /library/rabbitmq
+
+# 拉取 postgresql 非官方镜像
+docker pull /bitnami/postgresql&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.重命名镜像&lt;/p&gt;
+          &lt;pre&gt;&lt;code&gt;# 重命名 redis 镜像
+docker tag /library/redis redis 
+
+# 重命名 postgresql 镜像
+docker tag /bitnami/postgresql bitnami/postgresql&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;镜像源方式使用说明&lt;/h3&gt;&lt;p&gt;1.添加镜像源&lt;/p&gt;
+          &lt;pre&gt;&lt;code&gt;# 添加镜像代理到 Docker 镜像源
+sudo tee /etc/docker/daemon.json &amp;lt;&amp;lt; EOF
+{
+  "registry-mirrors": ["https://"]
+}
+EOF&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.拉取镜像&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 拉取 redis 官方镜像
+docker pull redis
+
+# 拉取 rabbitmq 非官方镜像
+docker pull bitnami/rabbitmq
+
+# 拉取 postgresql 官方镜像
+docker pull postgresql&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;
+        &lt;p&gt;©2024 &lt;a href="https://xiaowangye.org"&gt;xiaowangye.org&lt;/a&gt;. All rights reserved. Powered by &lt;a href="https://cloudflare.com"&gt;Cloudflare&lt;/a&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+`
+
+const routes = {
+  // 替换为你的域名
+  "dp.410006.xyz": dockerHub,
+};
+
+function routeByHosts(host) {
+  if (host in routes) {
+    return routes[host];
+  }
+  return "";
+}
+
+async function handleRequest(request) {
+
+  const url = new URL(request.url);
+
+  if (url.pathname == "/") {
+    return handleHomeRequest(url.host);
+  }
+
+  const upstream = routeByHosts(url.hostname);
+  if (!upstream) {
+    return createNotFoundResponse(routes);
+  }
+
+  const isDockerHub = upstream == dockerHub;
+  const authorization = request.headers.get("Authorization");
+  if (url.pathname == "/v2/") {
+    return handleFirstRequest(upstream, authorization, url.hostname);
+  }
+  // get token
+  if (url.pathname == "/v2/auth") {
+    return handleAuthRequest(upstream, url, isDockerHub, authorization);
+  }
+  // redirect for DockerHub library images
+  // Example: /v2/busybox/manifests/latest =&gt; /v2/library/busybox/manifests/latest
+  if (isDockerHub) {
+    const pathParts = url.pathname.split("/");
+    if (pathParts.length == 5) {
+      pathParts.splice(2, 0, "library");
+      const redirectUrl = new URL(url);
+      redirectUrl.pathname = pathParts.join("/");
+      return Response.redirect(redirectUrl.toString(), 301);
+    }
+  }
+  return handlePullRequest(upstream, request);
+}
+
+function parseAuthenticate(authenticateStr) {
+  // sample: Bearer realm="https://auth.ipv6.docker.com/token",service="registry.docker.io"
+  // match strings after =" and before "
+  const re = /(?&lt;=\=")(?:\\.|[^"\\])*(?=")/g;
+  const matches = authenticateStr.match(re);
+  if (matches == null || matches.length &lt; 2) {
+    throw new Error(`invalid Www-Authenticate Header: ${authenticateStr}`);
+  }
+  return {
+    realm: matches[0],
+    service: matches[1],
+  };
+}
+
+async function fetchToken(wwwAuthenticate, scope, authorization) {
+  const url = new URL(wwwAuthenticate.realm);
+  if (wwwAuthenticate.service.length) {
+    url.searchParams.set("service", wwwAuthenticate.service);
+  }
+  if (scope) {
+    url.searchParams.set("scope", scope);
+  }
+  const headers = new Headers();
+  if (authorization) {
+    headers.set("Authorization", authorization);
+  }
+  return await fetch(url, { method: "GET", headers: headers });
+}
+
+function handleHomeRequest(host) {
+  return new Response(HTML.replace(//g, host), {
+    status: 200,
+    headers: {
+      "content-type": "text/html",
+    }
+  })
+}
+
+async function handlePullRequest(upstream, request) {
+  const url = new URL(request.url);
+  const newUrl = new URL(upstream + url.pathname);
+  const newReq = new Request(newUrl, {
+    method: request.method,
+    headers: request.headers,
+    redirect: "follow",
+  });
+  return await fetch(newReq);
+}
+
+async function handleFirstRequest(upstream, authorization, hostname) {
+  const newUrl = new URL(upstream + "/v2/");
+  const headers = new Headers();
+  if (authorization) {
+    headers.set("Authorization", authorization);
+  }
+  // check if need to authenticate
+  const resp = await fetch(newUrl.toString(), {
+    method: "GET",
+    headers: headers,
+    redirect: "follow",
+  });
+  if (resp.status === 401) {
+      headers.set(
+        "Www-Authenticate",
+        `Bearer realm="https://${hostname}/v2/auth",service="cloudflare-docker-proxy"`
+      );
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+      headers: headers,
+    });
+  } else {
+    return resp;
+  }
+}
+
+async function handleAuthRequest(upstream, url, isDockerHub, authorization) {
+  const newUrl = new URL(upstream + "/v2/");
+  const resp = await fetch(newUrl.toString(), {
+    method: "GET",
+    redirect: "follow",
+  });
+  if (resp.status !== 401) {
+    return resp;
+  }
+  const authenticateStr = resp.headers.get("WWW-Authenticate");
+  if (authenticateStr === null) {
+    return resp;
+  }
+  const wwwAuthenticate = parseAuthenticate(authenticateStr);
+  let scope = url.searchParams.get("scope");
+  // autocomplete repo part into scope for DockerHub library images
+  // Example: repository:busybox:pull =&gt; repository:library/busybox:pull
+  if (scope &amp;&amp; isDockerHub) {
+    let scopeParts = scope.split(":");
+    if (scopeParts.length == 3 &amp;&amp; !scopeParts[1].includes("/")) {
+      scopeParts[1] = "library/" + scopeParts[1];
+      scope = scopeParts.join(":");
+    }
+  }
+  return await fetchToken(wwwAuthenticate, scope, authorization);
+}
+
+const createNotFoundResponse = (routes) =&gt; new Response(
+  JSON.stringify({ routes }),
+  {
+    status: 404,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
+</code></pre>
+<blockquote>
+<p>请将脚本中的 dp.410006.xyz 替换为你的域名。</p>
+</blockquote>
+<h2>Step 2: 绑定域名</h2>
+<p>点击 docker 进入 Worker 页面，点击 设置 &gt; 触发器 &gt; 添加自定义域，输入你要绑定的域名，等待创建完成，如下图所示：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f696a070-33c5-4e2e-93de-db52b620f551"><img src="https://github.com/user-attachments/assets/f696a070-33c5-4e2e-93de-db52b620f551" alt="image" style="max-width: 100%;"></a></p>
+<p>Step 3: 访问镜像代理首页<br>
+访问域名 <a href="https://dp.410006.xyz/" rel="nofollow">dp.410006.xyz</a>，可查看镜像代理的使用说明：<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/53ae8a9e-76d6-4230-8866-e027181e1c0e"><img src="https://github.com/user-attachments/assets/53ae8a9e-76d6-4230-8866-e027181e1c0e" alt="image" style="max-width: 100%;"></a></p>
+<h2>总结</h2>
+<p>在这篇文章中，我介绍了如何使用 Cloudflare Workers 创建一个名为 docker 的 Worker，并将其绑定到自定义域名。通过完成这些步骤，你可以使用自定义域名作为 Docker 镜像代理，最终绕过网络限制，成功拉取 Docker 镜像。</p>
+<p>文章来源：  <a href="https://xiaowangye.org/posts/how-to-build-docker-hub-mirror-with-cloudflare-workers/" rel="nofollow">小王爷</a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://wqlabs.github.io"> 韭菜编程博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
