@@ -95,7 +95,7 @@ customDomains = ["www.yourdomain2.com"] #与上面不同的域名
 ![image](https://github.com/user-attachments/assets/2c7d94fe-9c00-4b9f-9883-b324789a385d)
 
 
-### 3.5绑定自己的域名
+### 4.绑定自己的域名
 ①用argo隧道(不会)
 ②手动绑定
 先在你的域名的dns记录里A解析到serverAddr中填的那个ip,然后在panel面板刚才创建域名中Domain写A解析的你自己的域名,其他不变点添加
@@ -108,7 +108,7 @@ Type选Certificate file的话下面就上传cf的证书,Certificate上传.pem Ke
 ![image](https://github.com/user-attachments/assets/e05fbeb3-67ec-427f-a7d1-292d2d19d7dd)
 
 然后在上面的frpc.toml中的customDomains把域名改成你自己A解析的那个域名这样你就可以访问了.
-4.测试
+### 5.测试
 先在ssh中开启frpc(先cd到frp目录)
 ```
 ./frps -c ./frps.toml

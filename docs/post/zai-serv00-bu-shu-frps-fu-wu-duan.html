@@ -179,7 +179,7 @@ customDomains = ["www.yourdomain2.com"] #与上面不同的域名
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/84b4bed4-4f53-4683-8009-033b320bfd8e"><img src="https://github.com/user-attachments/assets/84b4bed4-4f53-4683-8009-033b320bfd8e" alt="image" style="max-width: 100%;"></a></p>
 <p>然后放到一个文件夹内<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2c7d94fe-9c00-4b9f-9883-b324789a385d"><img src="https://github.com/user-attachments/assets/2c7d94fe-9c00-4b9f-9883-b324789a385d" alt="image" style="max-width: 100%;"></a></p>
-<h3>3.5绑定自己的域名</h3>
+<h3>4.绑定自己的域名</h3>
 <p>①用argo隧道(不会)<br>
 ②手动绑定<br>
 先在你的域名的dns记录里A解析到serverAddr中填的那个ip,然后在panel面板刚才创建域名中Domain写A解析的你自己的域名,其他不变点添加<br>
@@ -188,9 +188,9 @@ customDomains = ["www.yourdomain2.com"] #与上面不同的域名
 Type选Certificate file的话下面就上传cf的证书,Certificate上传.pem Key上传.key,下面域名选择你自己的那个域名.没有证书就在Type选择Generate Let's Encrypt certificate(但是我会报错)(找到报错原因了,这里申请证书cf小黄云要先关闭)<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b5588670-41c6-40fb-b576-b72b030a6583"><img src="https://github.com/user-attachments/assets/b5588670-41c6-40fb-b576-b72b030a6583" alt="image" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e05fbeb3-67ec-427f-a7d1-292d2d19d7dd"><img src="https://github.com/user-attachments/assets/e05fbeb3-67ec-427f-a7d1-292d2d19d7dd" alt="image" style="max-width: 100%;"></a></p>
-<p>然后在上面的frpc.toml中的customDomains把域名改成你自己A解析的那个域名这样你就可以访问了.<br>
-4.测试<br>
-先在ssh中开启frpc(先cd到frp目录)</p>
+<p>然后在上面的frpc.toml中的customDomains把域名改成你自己A解析的那个域名这样你就可以访问了.</p>
+<h3>5.测试</h3>
+<p>先在ssh中开启frpc(先cd到frp目录)</p>
 <pre class="notranslate"><code class="notranslate">./frps -c ./frps.toml
 </code></pre>
 <p>然后在你的客户端中启动frpc(依然先cd到frp目录)</p>
