@@ -1,5 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>韭菜编程博客</title><link>https://wqlabs.github.io</link><description>我是韭菜编程博客，记录日常，分享韭菜成长经验。</description><copyright>韭菜编程博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/39255755?v=4</url><title>avatar</title><link>https://wqlabs.github.io</link></image><lastBuildDate>Thu, 18 Jul 2024 08:00:48 +0000</lastBuildDate><managingEditor>韭菜编程博客</managingEditor><ttl>60</ttl><webMaster>韭菜编程博客</webMaster><item><title>在白嫖的serv00上运行sing-box</title><link>https://wqlabs.github.io/post/zai-bai-piao-de-serv00-shang-yun-xing-sing-box.html</link><description>今天折腾吃灰serv00&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>韭菜编程博客</title><link>https://wqlabs.github.io</link><description>我是韭菜编程博客，记录日常，分享韭菜成长经验。</description><copyright>韭菜编程博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/39255755?v=4</url><title>avatar</title><link>https://wqlabs.github.io</link></image><lastBuildDate>Thu, 18 Jul 2024 08:39:33 +0000</lastBuildDate><managingEditor>韭菜编程博客</managingEditor><ttl>60</ttl><webMaster>韭菜编程博客</webMaster><item><title>在serv00部署frps服务端</title><link>https://wqlabs.github.io/post/zai-serv00-bu-shu-frps-fu-wu-duan.html</link><description>零.延迟&#13;
+低情商:卡 高情商:犹如国际级服务器hypixel般的体验 勉强能玩吧&#13;
+![image](https://github.com/user-attachments/assets/0e7f5ddf-6bcf-45e2-ae41-12013c71a46e)&#13;
+&#13;
+&#13;
+网站倒是还算流畅的&#13;
+![image](https://github.com/user-attachments/assets/81fd3381-b5aa-4af5-9e73-255d26c0b3c6)&#13;
+## 一.前戏&#13;
+### 1.设置端口&#13;
+面板左侧 Port reservation→+Add port (如图)&#13;
+&#13;
+![image](https://github.com/user-attachments/assets/6df7e222-0983-442e-b4e2-e3cc8dd06e24)&#13;
+&#13;
+一共可以创建三个,这里记作端口A B C,后面会用到&#13;
+&#13;
+### 2.打开允许自己的软件&#13;
+Additional services 选项卡中找到 Run your own applications 项目，将其设置为 Enabled 即可。</description><guid isPermaLink="true">https://wqlabs.github.io/post/zai-serv00-bu-shu-frps-fu-wu-duan.html</guid><pubDate>Thu, 18 Jul 2024 08:37:25 +0000</pubDate></item><item><title>在白嫖的serv00上运行sing-box</title><link>https://wqlabs.github.io/post/zai-bai-piao-de-serv00-shang-yun-xing-sing-box.html</link><description>今天折腾吃灰serv00&#13;
 之前就想尝试在serv00上跑sing-box，一直没时间弄，今天试了下，还真给搞成了。</description><guid isPermaLink="true">https://wqlabs.github.io/post/zai-bai-piao-de-serv00-shang-yun-xing-sing-box.html</guid><pubDate>Tue, 16 Jul 2024 08:47:37 +0000</pubDate></item><item><title>如何使用 Cloudflare Workers 自建 Docker 镜像代理</title><link>https://wqlabs.github.io/post/ru-he-shi-yong-%20Cloudflare%20Workers%20-zi-jian-%20Docker%20-jing-xiang-dai-li.html</link><description>## 背景&#13;
 近期，由于个别用户在 Docker Hub 上传了领导人的 AI 语音项目，导致中国区的 Docker 官方仓库被封锁。</description><guid isPermaLink="true">https://wqlabs.github.io/post/ru-he-shi-yong-%20Cloudflare%20Workers%20-zi-jian-%20Docker%20-jing-xiang-dai-li.html</guid><pubDate>Tue, 16 Jul 2024 08:35:55 +0000</pubDate></item><item><title>使用 Serv00.com 搭建memos服务</title><link>https://wqlabs.github.io/post/shi-yong-%20Serv00.com%20-da-jian-memos-fu-wu.html</link><description>## memos 简介&#13;
 memos 是一项开源、免费且隐私优先的笔记服务，提供 Docker 一键安装，支持纯文本和 Markdown，并提供自定义共享和 RESTful API 集成功能。</description><guid isPermaLink="true">https://wqlabs.github.io/post/shi-yong-%20Serv00.com%20-da-jian-memos-fu-wu.html</guid><pubDate>Tue, 16 Jul 2024 08:28:42 +0000</pubDate></item><item><title>Chrome拓展插件推荐</title><link>https://wqlabs.github.io/post/Chrome-tuo-zhan-cha-jian-tui-jian.html</link><description>每次重装完系统都忘记自己装了什么插件，索性备份一波，既能给大家作为参考，又能一劳永逸。</description><guid isPermaLink="true">https://wqlabs.github.io/post/Chrome-tuo-zhan-cha-jian-tui-jian.html</guid><pubDate>Thu, 11 Jul 2024 06:55:47 +0000</pubDate></item><item><title>RSS订阅使用教程（电脑、安卓、iOS）</title><link>https://wqlabs.github.io/post/RSS-ding-yue-shi-yong-jiao-cheng-%EF%BC%88-dian-nao-%E3%80%81-an-zhuo-%E3%80%81iOS%EF%BC%89.html</link><description>## 缘起&#13;
