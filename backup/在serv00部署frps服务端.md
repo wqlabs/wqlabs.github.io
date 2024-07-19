@@ -5,7 +5,7 @@
 
 网站倒是还算流畅的
 ![image](https://github.com/user-attachments/assets/81fd3381-b5aa-4af5-9e73-255d26c0b3c6)
-## 一.前戏
+## 一.前提设置
 ### 1.设置端口
 面板左侧 Port reservation→+Add port (如图)
 
@@ -15,6 +15,8 @@
 
 ### 2.打开允许自己的软件
 Additional services 选项卡中找到 Run your own applications 项目，将其设置为 Enabled 即可。如果不开启这一项，自己的用户目录下的所有文件都无法添加可执行权限。
+![image](https://github.com/user-attachments/assets/36638835-ef9d-4231-ae66-58ef0be1e710)
+
 **如果你是在ssh之后才设置的这个选项,记得要重新ssh链接一遍,不然依然无法添加权限** 
 
 ### 3.安装pm2
@@ -30,7 +32,7 @@ source ~./bashrc
 ```
 ~/.npm-global/bin/pm2
 ```
-## 二.好戏开场了
+## 二.安装步骤
 ### 1.安装frp
 建议手动下载frp_版本号_freebsd_amd64.tar.gz后进去panel左侧的File manager后上传,使用wget可能会更新不及时
 ```
@@ -126,8 +128,8 @@ frpc
 
 退出就ctrl+c就行
 
-三.完结散花
-1.开机自启
+## 三.完结散花
+### 1.开机自启
 还记得之前装的pm2吗
 先在ssh退出frps
 然后使用PM2监控
@@ -142,7 +144,7 @@ pm2 start -x ./frp/frps -n frp -- -c ./frp/frps.toml
 ```
 pm2 save
 ```
-## 2.定时ssh
+### 2.定时ssh
 ### 方法①青龙面板(可能有时连不上,建议ssh链接时间调短一点)
 添加Linux依赖 sshpass .添加定时任务 其他随意
 命令
