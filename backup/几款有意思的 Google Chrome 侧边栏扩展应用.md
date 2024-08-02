@@ -1,4 +1,3 @@
-
 ![image](https://github.com/user-attachments/assets/060b9ed4-23bb-4ecc-b035-44dfcdd59966)
 
 侧边栏（Side Panel）是 Google Chrome 浏览器于 2022 年首次推出的特性，它可以让用户在浏览网页的同时，打开一个侧边栏，显示一些常用的小工具或者应用。
@@ -113,8 +112,7 @@ Page Sidebar
 
 ![image](https://github.com/user-attachments/assets/cc4e3a8e-35b3-4a0a-8aa0-639de640e9c9)
 
-
-Chrome 设置
+## Chrome 设置
 
 此外，你还可以前往 `chrome://flags` 中，搜索 `side-panel`，可以看到一些关于侧边栏的实验性特性。但需要谨慎使用，因为这些特性可能会导致浏览器不稳定。
 
