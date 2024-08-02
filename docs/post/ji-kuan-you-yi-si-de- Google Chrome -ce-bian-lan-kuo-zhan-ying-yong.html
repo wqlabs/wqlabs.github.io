@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="![](https://cdn.huhuhang.com/images/2024/05/%E9%85%8D%E5%9B%BE-5-1715760765.png)
+
+侧边栏（Side Panel）是 Google Chrome 浏览器于 2022 年首次推出的特性，它可以让用户在浏览网页的同时，打开一个侧边栏，显示一些常用的小工具或者应用。">
+<meta property="og:title" content="几款有意思的 Google Chrome 侧边栏扩展应用">
+<meta property="og:description" content="![](https://cdn.huhuhang.com/images/2024/05/%E9%85%8D%E5%9B%BE-5-1715760765.png)
+
+侧边栏（Side Panel）是 Google Chrome 浏览器于 2022 年首次推出的特性，它可以让用户在浏览网页的同时，打开一个侧边栏，显示一些常用的小工具或者应用。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/ji-kuan-you-yi-si-de-%20Google%20Chrome%20-ce-bian-lan-kuo-zhan-ying-yong.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>几款有意思的 Google Chrome 侧边栏扩展应用</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">几款有意思的 Google Chrome 侧边栏扩展应用</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/35" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f9fb6eca5559a51eabd926ccd0b46b8fcdb4a48e6865856379165319354b0e64/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f2545392538352538442545352539422542452d352d313731353736303736352e706e67"><img src="https://camo.githubusercontent.com/f9fb6eca5559a51eabd926ccd0b46b8fcdb4a48e6865856379165319354b0e64/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f2545392538352538442545352539422542452d352d313731353736303736352e706e67" alt="" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/%E9%85%8D%E5%9B%BE-5-1715760765.png" style="max-width: 100%;"></a></p>
+<p>侧边栏（Side Panel）是 Google Chrome 浏览器于 2022 年首次推出的特性，它可以让用户在浏览网页的同时，打开一个侧边栏，显示一些常用的小工具或者应用。</p>
+<p>早期，一些扩展实现了类似侧边栏的功能，即支持在网页的右侧或左侧显示一个窗口。但是，这些扩展的体验并不是很好，它可能会遮挡网页的内容，或者在切换标签页时，每次都需要重新打开。</p>
+<p>而 Chrome 的侧边栏特性，可以保持侧边栏的显示状态，不受标签页切换的影响。开发者能实现的功能更多，用户体验也更好。</p>
+<p>Chrome 内置了一些默认的侧边栏应用，例如：阅读清单、书签、历史记录、Google 搜索等。如今，越来越多的开发者开始适配这个特性，推出了各种各样的侧边栏扩展应用。接下来，我将介绍一些我使用过的，还不错的 Chrome 侧边栏应用。</p>
+<h2>GetVM：免费的云端 Linux 和 IDE</h2>
+<p>Linux 是一个非常强大的操作系统，它在服务器领域有着广泛的应用。我还记得十多年前上大学时，为了体验 <a href="https://fedoraproject.org/" rel="nofollow">Fedora</a> 和 Ubuntu 等 Linux 发行版，我曾经在 Windows 系统上学会了安装双系统。</p>
+<p><a href="https://chromewebstore.google.com/detail/getvm-instant-free-linux/cgenfommofedogdmkmjdndijcilplkmg" rel="nofollow">GetVM</a> 这款 Chrome 侧边栏扩展，可以帮你在浏览器中快速创建一个运行在云端的 Linux 虚拟机。使用了侧边栏特性的好处在于，你无需频繁切换窗口，从而更加专注于学习或者工作。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c54a522490d1e59f80623392a52e0b58184857a1e1a62831a329324a9788312f/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f32303234303433302d31342d30302d35312d5675536c6e61566b2e706e67"><img src="https://camo.githubusercontent.com/c54a522490d1e59f80623392a52e0b58184857a1e1a62831a329324a9788312f/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f32303234303433302d31342d30302d35312d5675536c6e61566b2e706e67" alt="GetVM 在侧边栏打开 Ubuntu Desktop" data-canonical-src="https://cdn.huhuhang.com/images/2024/20240430-14-00-51-VuSlnaVk.png" style="max-width: 100%;"></a></p>
+<p>GetVM 在侧边栏打开 Ubuntu Desktop</p>
+<p>你可以根据需要直接打开预设模板，例如 Ubuntu Desktop，Jupyter Notebook，VS Code，以及各类数据库等。或者提交自己的 <a href="https://hub.docker.com/" rel="nofollow">Docker Hub</a> 镜像链接到 <a href="https://chromewebstore.google.com/detail/getvm-instant-free-linux/cgenfommofedogdmkmjdndijcilplkmg" rel="nofollow">GetVM</a>。</p>
+<p>无论是学习编程，测试代码，或者出于安全考虑打开一个不太放心的网站，都可以在 <a href="https://chromewebstore.google.com/detail/getvm-instant-free-linux/cgenfommofedogdmkmjdndijcilplkmg" rel="nofollow">GetVM</a> 中完成。</p>
+<p>GetVM 最大的优势是轻量便捷，你不需要在刚入门编程时就被复杂的环境配置困扰，也不需要担心污染本地环境把系统搞得乱糟糟，甚至崩溃。只需要在浏览器菜单栏点击一下，就可以在侧边栏中立刻获得一个 Linux 的虚拟机，是新手入门 Linux 非常不错的选择。你可以前往 Chrome 应用商店安装 <a href="https://chromewebstore.google.com/detail/getvm-instant-free-linux/cgenfommofedogdmkmjdndijcilplkmg" rel="nofollow">GetVM</a>。</p>
+<h2>豆包：浏览器中的 AI 助手</h2>
+<p>两年前，ChatGPT 引爆了生成式 AI 的热潮，如今已经被广泛应用在各种场景中。豆包是字节推出的 AI 助手，同时提供了支持 Chrome 侧边栏的扩展应用，它可以帮助你在浏览网页时，快速调用 AI 助手，获取文本摘要、翻译、生成图片等功能。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ec4673c1d4372115d793c56a6fd8438dbd1ea6292ef7c940c9adac7b6228b6ac/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f73756d6d6172697a652e32326631303731312d313731353735343732342e706e67"><img src="https://camo.githubusercontent.com/ec4673c1d4372115d793c56a6fd8438dbd1ea6292ef7c940c9adac7b6228b6ac/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f73756d6d6172697a652e32326631303731312d313731353735343732342e706e67" alt="豆包" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/summarize.22f10711-1715754724.png" style="max-width: 100%;"></a></p>
+<p>豆包</p>
+<p>如今，浏览器扩展类的 AI 助手已成红海，甚至成为了侧边栏应用最多的类别之一。除了豆包的海外版 <a href="https://www.ciciai.com/" rel="nofollow">Cici</a>，还有包括 <a href="https://sider.ai/extensions/chatgpt-sidebar-for-chrome-edge-safari" rel="nofollow">Sider</a>，<a href="https://monica.im/" rel="nofollow">Monica</a>，<a href="https://chromewebstore.google.com/detail/jbfeongihppeenfnaofmdeikahaefljd" rel="nofollow">Manganum</a>，<a href="https://www.elmo.chat/" rel="nofollow">Elmo Chat</a> 等都运用了 Chrome 的侧边栏特性，并且做得都很不错。</p>
+<p>当然，豆包的优势之一是目前完全免费，例如之前你可能需要基于大模型的网页翻译，都需要配置自己的 API 密钥或者订阅，而这一切在豆包和 Cici 中都是免费的。此外，豆包在不支持侧边栏的浏览器，例如 Arc 中也通过技术手段实现了类似的功能，的确是一款很用心的产品。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8977a5cf9032e13dcea985821fadb8e54a902f3b6224395a4a561bae98398fea/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31342d32342d30312d47764346317a6e4a2d313731353735343330392e706e67"><img src="https://camo.githubusercontent.com/8977a5cf9032e13dcea985821fadb8e54a902f3b6224395a4a561bae98398fea/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31342d32342d30312d47764346317a6e4a2d313731353735343330392e706e67" alt="豆包在 Arc 浏览器实现了类似效果" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240515-14-24-01-GvCF1znJ-1715754309.png" style="max-width: 100%;"></a></p>
+<p>豆包在 Arc 浏览器实现了类似效果</p>
+<h2>Tab Shelf：借助侧边栏实现垂直标签页</h2>
+<p>Edge 浏览器在 2021 年就推出了垂直标签页的功能，受到了很多用户的好评。垂直标签，顾名思义就是可以将标签页放在浏览器的左侧，而不是传统的上方。这样做的好处在于，可以更好地利用宽屏显示器的空间，标题显示更长，标签页显示更多，也就更利于区分和筛选。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/00bdcef5854ac8dc5c747541b594ca52ccc4d924464cba2ac535b83a42bf4a48/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f766964656f6672616d655f343035322d313731353831393733322e706e67"><img src="https://camo.githubusercontent.com/00bdcef5854ac8dc5c747541b594ca52ccc4d924464cba2ac535b83a42bf4a48/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f766964656f6672616d655f343035322d313731353831393733322e706e67" alt="Edge 垂直标签页" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/videoframe_4052-1715819732.png" style="max-width: 100%;"></a></p>
+<p>Edge 垂直标签页</p>
+<p>虽然有很多浏览器都支持了垂直标签页，但是 Chrome 本身并没有这个功能。不过，有一款叫做 <a href="https://chrome.google.com/webstore/detail/tab-shelf/gkiobnohamhihbaipacecjfljepjjlmg" rel="nofollow">Tab Shelf</a> 的侧边栏应用，可以帮助你实现类似的效果。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a588647d68f51abeb4977cafc5b77dfdfd49354b087bf83ddffc23c7470003c7/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31342d34342d31352d696237556c6977512d313731353735353437302e706e67"><img src="https://camo.githubusercontent.com/a588647d68f51abeb4977cafc5b77dfdfd49354b087bf83ddffc23c7470003c7/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31342d34342d31352d696237556c6977512d313731353735353437302e706e67" alt="Tab Shelf" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240515-14-44-15-ib7UliwQ-1715755470.png" style="max-width: 100%;"></a></p>
+<p>Tab Shelf</p>
+<p>Tab Shelf 可以让你在 Chrome 浏览器的侧边栏中，管理当前的所有标签页，提供了标签页分组、静音、复制、固定、睡眠、关闭等功能。</p>
+<p>无论从颜值还是功能，Tab Shelf 都是一款非常不错侧边栏垂直标签页扩展，值得一试。唯一不足的地方是没有提供中文界面，当然你可以用上面提到的豆包对 <a href="https://tabshelf.clarencesiew.com/user-guide" rel="nofollow">官方手册</a> 进行翻译或总结，应该不会有太大问题。</p>
+<p>Chrome 应用商店中类似通过侧边栏实现垂直标签页的扩展还有很多，例如国内开发者做的 <a href="https://chromewebstore.google.com/detail/%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%9E%82%E7%9B%B4%E6%A0%87%E7%AD%BE%E9%A1%B5/akahnknmcbmgodngfjcflnaljdbhnlfo" rel="nofollow">侧边栏垂直标签页</a>。</p>
+<h2>Page Sidebar：侧边栏打开网页</h2>
+<p>如果你之前用过 Arc 或者 Edge 浏览器，那么对于分屏显示网页应该不陌生。分屏显示可以让你同时查看两个网页，在需要跨页面操作或者对比内容时非常有用。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/210315aaed9c6696ca6444a30693849595993f09c4c5daf29380ab75913ddb97/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531372d31342d32382d33362d58765632713838692d313731353932373333322e706e67"><img src="https://camo.githubusercontent.com/210315aaed9c6696ca6444a30693849595993f09c4c5daf29380ab75913ddb97/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531372d31342d32382d33362d58765632713838692d313731353932373333322e706e67" alt="在 Arc 中使用 Split View 分屏显示网页" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240517-14-28-36-XvV2q88i-1715927332.png" style="max-width: 100%;"></a></p>
+<p>在 Arc 中使用 Split View 分屏显示网页</p>
+<p>Google Chrome 本身并不支持分屏显示，但是 <a href="https://chromewebstore.google.com/detail/page-sidebar-open-any-pag/gkkebamcfeaggmcfciekfakbmlgckdnh" rel="nofollow">Page Sidebar</a> 的侧边栏应用，通过曲线救国的方式实现类似的效果。</p>
+<p>你可以通过右键选中当前页面的任意链接，从菜单中找到「Open link in sidebar」的选项，然后就可以在侧边栏中打开这个链接。例如在浏览文章列表的同时，可以在侧边栏中打开文章详情。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/337b4eced0f6985df208a2c9c6d798961a350d07e8c2c28166a541cb901eadcf/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531372d31342d32342d34362d4b48743961786b642d313731353932373236312e706e67"><img src="https://camo.githubusercontent.com/337b4eced0f6985df208a2c9c6d798961a350d07e8c2c28166a541cb901eadcf/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531372d31342d32342d34362d4b48743961786b642d313731353932373236312e706e67" alt="Page Sidebar" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240517-14-24-46-KHt9axkd-1715927261.png" style="max-width: 100%;"></a></p>
+<p>Page Sidebar</p>
+<p>当然，Page Sidebar 使用了 iframe 的方式来打开网页，所以有些网站可能会有安全策略的限制，导致无法正常打开。但是对于大部分网站，<a href="https://chromewebstore.google.com/detail/page-sidebar-open-any-pag/gkkebamcfeaggmcfciekfakbmlgckdnh" rel="nofollow">Page Sidebar</a> 都能正常工作。此外，Page Sidebar 的开发者还提供了另一款侧边栏扩展应用 <a href="https://chromewebstore.google.com/detail/note-sidebar/emiochiflnnegkecnjndifbobmbepdne" rel="nofollow">Note Sidebar</a>，这是一款笔记应用，功能非常简单，这里就不再赘述了。</p>
+<h2>嘀嗒清单：轻量的待办事项工具</h2>
+<p>嘀嗒清单是知名的国产待办事项工具，它的 Chrome 扩展应用也支持了侧边栏。由于是采用了类似 Page Sidebar 的方式直接嵌入了嘀嗒清单的 Web 版本，所以你可以侧边栏中完成 Web 版本的所有操作，包括添加任务、查看任务、设置提醒等。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7798a0c0c7f115e6b766fd07e61f79661bdac3ecc33c4ec3eac3269ec8f34758/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531372d31342d31342d31382d714a52453663684e2d313731353932373432302e706e67"><img src="https://camo.githubusercontent.com/7798a0c0c7f115e6b766fd07e61f79661bdac3ecc33c4ec3eac3269ec8f34758/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531372d31342d31342d31382d714a52453663684e2d313731353932373432302e706e67" alt="嘀嗒清单" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240517-14-14-18-qJRE6chN-1715927420.png" style="max-width: 100%;"></a></p>
+<p>嘀嗒清单</p>
+<p>如果你是嘀嗒清单的用户，推荐 <a href="https://chromewebstore.google.com/detail/ticktick-todo-task-list/diankknpkndanachmlckaikddgcehkod" rel="nofollow">安装试一试</a>。</p>
+<h2>侧边游戏：百余款小游戏</h2>
+<p>除了上面提到的工具类应用，侧边栏也可以用于放松一下，玩一局小游戏。<a href="https://chromewebstore.google.com/detail/%E4%BE%A7%E8%BE%B9%E6%B8%B8%E6%88%8F-%E5%9C%A8%E4%BE%A7%E8%BE%B9%E6%A0%8F%E7%8E%A9%E8%BF%B7%E4%BD%A0%E6%B8%B8%E6%88%8F/gcnahbcdhgjobeahhdogjhhmnlopcjaj" rel="nofollow">侧边游戏</a> 提供了百余款免费的小游戏，你可以在侧边栏中直接打开，无需切换标签页。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d12b94d4dcf8a6d17e3026c6979d3f6d50a9b09a1eb6a7d804281de26f539929/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31352d35332d31382d59636442594f785a2d313731353735393630392e706e67"><img src="https://camo.githubusercontent.com/d12b94d4dcf8a6d17e3026c6979d3f6d50a9b09a1eb6a7d804281de26f539929/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31352d35332d31382d59636442594f785a2d313731353735393630392e706e67" alt="侧边游戏" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240515-15-53-18-YcdBYOxZ-1715759609.png" style="max-width: 100%;"></a></p>
+<p>侧边游戏</p>
+<p>这些小游戏包括了各种类型，例如射击、益智、休闲、竞速等，适合各种年龄段的用户。随时随地玩一局，劳逸结合。</p>
+<h2>小结</h2>
+<p>最后再提一下 Chrome 侧边栏相关的设置选项。你可以在 Chrome 浏览器的设置中，找到“外观”选项，然后在“侧边栏”中选择默认的侧边栏位于左侧或右侧，这个根据个人习惯选择即可。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/60bd868b157afce2b727cb906bbc9496773774e674c72fd2ef8c62d9b44f00bc/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31352d30352d31342d594d796b72744a322d313731353735363733332e706e67"><img src="https://camo.githubusercontent.com/60bd868b157afce2b727cb906bbc9496773774e674c72fd2ef8c62d9b44f00bc/68747470733a2f2f63646e2e6875687568616e672e636f6d2f696d616765732f323032342f30352f32303234303531352d31352d30352d31342d594d796b72744a322d313731353735363733332e706e67" alt="Chrome 设置" data-canonical-src="https://cdn.huhuhang.com/images/2024/05/20240515-15-05-14-YMykrtJ2-1715756733.png" style="max-width: 100%;"></a></p>
+<p>Chrome 设置</p>
+<p>此外，你还可以前往 <code class="notranslate">chrome://flags</code> 中，搜索 <code class="notranslate">side-panel</code>，可以看到一些关于侧边栏的实验性特性。但需要谨慎使用，因为这些特性可能会导致浏览器不稳定。</p>
+<p>侧边栏的出现，让一些工具类和效率类的应用有了更好的展示方式和体验，使用起来更加便捷，无需频繁切换窗口和打开单独的网页。</p>
+<p>但目前 Google Chrome 侧边栏应用的生态也还不够完善，官方时常做功能上的变更，而开发者往往也是直接嵌入 Web 版本的页面，缺乏一些原生的适配，让整体的产品体验略显粗糙。</p>
+<p>目前，AI 助手类的应用基本占据了 Chrome 侧边栏应用的半壁江山，也希望未来能有更多有趣的应用出现。当然，我更加希望 Google Chrome 不要原地踏步，在完善侧边栏特性的同时，也积极吸收其他浏览器的优秀特性，让用户体验越来越好。</p>
+<hr></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://wqlabs.github.io">韭菜编程博客</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
