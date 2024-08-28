@@ -10,9 +10,11 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="之前就想尝试在`serv00`上跑`sing-box`，一直没时间弄，今天试了下，还真给搞成了。">
+<meta name="description" content="今天折腾吃灰serv00
+之前就想尝试在serv00上跑sing-box，一直没时间弄，今天试了下，还真给搞成了。">
 <meta property="og:title" content="在白嫖的serv00上运行sing-box">
-<meta property="og:description" content="之前就想尝试在`serv00`上跑`sing-box`，一直没时间弄，今天试了下，还真给搞成了。">
+<meta property="og:description" content="今天折腾吃灰serv00
+之前就想尝试在serv00上跑sing-box，一直没时间弄，今天试了下，还真给搞成了。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wqlabs.github.io/post/zai-bai-piao-de-serv00-shang-yun-xing-sing-box.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
@@ -41,7 +43,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
 </style>
 
 
@@ -57,7 +69,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/37" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/31" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -73,38 +85,43 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>之前就想尝试在<code class="notranslate">serv00</code>上跑<code class="notranslate">sing-box</code>，一直没时间弄，今天试了下，还真给搞成了。<br>
-一键脚本开源在G站了，顺便来分享下。</p>
+<div class="markdown-body" id="postBody"><p>今天折腾吃灰serv00<br>
+之前就想尝试在serv00上跑sing-box，一直没时间弄，今天试了下，还真给搞成了。<br>
+一键脚本开源在G站了，来分享下，顺便混点能量~</p>
 <p>省流：</p>
-<p><code class="notranslate">mkdir -p ./sing-box &amp;&amp; cd ./sing-box bash &lt;(curl -sSL https://raw.githubusercontent.com/RayWangQvQ/sing-box-installer/main/install-serv00.sh)</code></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8ad36f87-83bd-4297-adec-b095fbf118d3"><img src="https://github.com/user-attachments/assets/8ad36f87-83bd-4297-adec-b095fbf118d3" alt="image" style="max-width: 100%;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/dbd40bb1-cf88-4f58-b390-c534c26bf6d9"><img src="https://github.com/user-attachments/assets/dbd40bb1-cf88-4f58-b390-c534c26bf6d9" alt="image" style="max-width: 100%;"></a></p>
-<h2><a href="#p-1040014-h-1"></a>教程</h2>
+<pre class="notranslate"><code class="notranslate">mkdir -p ./sing-box &amp;&amp; cd ./sing-box
+bash &lt;(curl -sSL https://raw.githubusercontent.com/RayWangQvQ/sing-box-installer/main/install-serv00.sh)
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/619df31c-c46e-4dfe-9fae-b07a9360fee8"><img src="https://github.com/user-attachments/assets/619df31c-c46e-4dfe-9fae-b07a9360fee8" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/dbe69e33-52c0-4d58-95db-3e84d14b7765"><img src="https://github.com/user-attachments/assets/dbe69e33-52c0-4d58-95db-3e84d14b7765" alt="image" style="max-width: 100%;"></a></p>
+<h2>1. 教程</h2>
 <p>需要先从serv00里收集如下信息：</p>
-<h3><a href="#p-1040014-ip-2"></a>IP</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6abd973c-fe01-4dc7-af38-14d456e1bb62"><img src="https://github.com/user-attachments/assets/6abd973c-fe01-4dc7-af38-14d456e1bb62" alt="image" style="max-width: 100%;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/cc0a7807-f0b5-4c9a-8d48-e10e54ad8625"><img src="https://github.com/user-attachments/assets/cc0a7807-f0b5-4c9a-8d48-e10e54ad8625" alt="image" style="max-width: 100%;"></a></p>
+<h3>1.1. IP</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f814a285-b323-447a-af40-5a7d873820e2"><img src="https://github.com/user-attachments/assets/f814a285-b323-447a-af40-5a7d873820e2" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bb2289c0-6738-4794-945b-bfb17f7dc835"><img src="https://github.com/user-attachments/assets/bb2289c0-6738-4794-945b-bfb17f7dc835" alt="image" style="max-width: 100%;"></a></p>
 <p>任选一个，记住IP。</p>
-<h3><a href="#p-1040014-h-3"></a>端口</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d611d3b9-99f0-4058-8700-58736b725ca5"><img src="https://github.com/user-attachments/assets/d611d3b9-99f0-4058-8700-58736b725ca5" alt="image" style="max-width: 100%;"></a></p>
+<h3>1.2. 端口</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/092148e6-def2-43ab-a065-2c39b6416c1e"><img src="https://github.com/user-attachments/assets/092148e6-def2-43ab-a065-2c39b6416c1e" alt="image" style="max-width: 100%;"></a></p>
 <p>记下端口，没有就创建一个。</p>
-<h3><a href="#p-1040014-ssh-4"></a>ssh执行一键脚本</h3>
-<p>登录ssh，执行上面的一键脚本，期间会自动安装<code class="notranslate">sing-box</code>，然后让填IP和端口。</p>
+<h3>1.3. ssh执行一键脚本</h3>
+<p>登录ssh，执行上面的一键脚本，期间会自动安装sing-box，然后让填IP和端口。</p>
 <p>成功后，会生成一个vmess订阅。</p>
-<h2><a href="#p-1040014-h-5"></a>其他</h2>
-<p>当前实现方式是用<code class="notranslate">sing-box</code>的<code class="notranslate">FreeBSD</code>二进制包来绕过包管理器，直接把<code class="notranslate">sing-box</code>装到用户目录里了。</p>
-<p><code class="notranslate">sing-box</code>支持的协议很多，我试了下<code class="notranslate">hysteria</code>和<code class="notranslate">reality</code>，但是没成功，提示打包时没有选择包含<code class="notranslate">quic</code>和<code class="notranslate">reality</code>的tag，不知道是啥原因让<code class="notranslate">sing-box</code>打<code class="notranslate">FreeBSD</code>包时排除了这两个tag。<br>
-有感兴趣的兄弟可以去尝试下，自己基于<code class="notranslate">sing-box</code>源码来build一个带<code class="notranslate">quic</code>和<code class="notranslate">reality</code>的包试试看，如果能成，那可玩性就又高出一个层级了。</p>
-<p>另外，毕竟免费资源，速度一般，辣鸡电信晚高峰速度如下：</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/03e460b1-7e94-4d46-8ebf-a83df999136b"><img src="https://github.com/user-attachments/assets/03e460b1-7e94-4d46-8ebf-a83df999136b" alt="image" style="max-width: 100%;"></a></p>
-<p>用CF拉了一下，快了一丢丢，7万左右，看4k还是没问题的：</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4de544b5-b191-4028-9682-f5f9ce461b23"><img src="https://github.com/user-attachments/assets/4de544b5-b191-4028-9682-f5f9ce461b23" alt="image" style="max-width: 100%;"></a></p>
+<h2>2. 其他</h2>
+<h3>2.1. 实现方式</h3>
+<p>当前实现方式是用sing-box的FreeBSD二进制包来绕过包管理器，直接把sing-box装到用户目录里了。</p>
+<h3>2.2. 关于协议（hysteria和reality）</h3>
+<p>sing-box支持的协议很多，我试了下hysteria和reality，但是没成功，提示打包时没有选择包含quic和reality的tag，不知道是啥原因让sing-box打FreeBSD包时排除了这两个tag。<br>
+有感兴趣的兄弟可以去尝试下，自己基于sing-box源码来build一个带quic和reality的包试试看，如果能成，那可玩性就又高出一个层级了。</p>
+<h3>2.3. 关于速度</h3>
+<p>毕竟免费资源，速度一般，辣鸡电信晚高峰速度如下：：<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/0d2c12f4-f308-4329-8f28-84b393df4b0c"><img src="https://github.com/user-attachments/assets/0d2c12f4-f308-4329-8f28-84b393df4b0c" alt="image" style="max-width: 100%;"></a></p>
+<p>用CF拉了一下，快了一丢丢，7万左右，看4k还是没问题的：<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/14af807d-ccb3-45c9-8efb-ec089d2499fd"><img src="https://github.com/user-attachments/assets/14af807d-ccb3-45c9-8efb-ec089d2499fd" alt="image" style="max-width: 100%;"></a></p>
 <p>配置CDN也简单，在CF里设置下端口转发就行了，就不赘述了。</p>
-<p>脚本开源的：<a href="https://github.com/RayWangQvQ/sing-box-installer">GitHub - RayWangQvQ/sing-box-installer: 基于docker一键安装sing-box服务端，并自动生成vmess、naiveproxy、hysteria2节点 105</a> ，如果发现有可以优化的地方，欢迎大佬们来贡献PR~<br>
-参考文章：<br>
-<a href="https://linux.do/t/topic/134828" rel="nofollow">https://linux.do/t/topic/134828</a><br>
-<a href="https://www.nodeloc.com/d/6279" rel="nofollow">https://www.nodeloc.com/d/6279</a><br>
-<a href="https://hyrikuma-akari.top/2024/04/07/cf-origin-rules/" rel="nofollow">https://hyrikuma-akari.top/2024/04/07/cf-origin-rules/</a></p></div>
+<p>脚本开源的，如果发现有可以优化的地方，欢迎大佬们来贡献PR~</p>
+<p>更新：<br>
+reality搞定了，果然跟FreeBDS没关系，是sing-box官方build没有带这些tag，自己build一个就行了。<br>
+那hysteria应该也是没问题的。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -129,7 +146,7 @@ if(""!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
 var utterancesLoad=0;
 
 let themeSettings={
@@ -163,11 +180,7 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-cmButton=document.getElementById("cmButton");
-    span=document.createElement("span");
-    span.setAttribute("class","Counter");
-    span.innerHTML="1";
-    cmButton.appendChild(span);
+
 
 
 function openComments(){
@@ -206,7 +219,70 @@ function iFrameLoading(){
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
 
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
 
 </script>
 
