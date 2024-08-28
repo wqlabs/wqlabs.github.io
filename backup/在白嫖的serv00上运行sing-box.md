@@ -60,3 +60,4 @@
 参考文章：
 https://linux.do/t/topic/134828
 https://www.nodeloc.com/d/6279
+https://hyrikuma-akari.top/2024/04/07/cf-origin-rules/
