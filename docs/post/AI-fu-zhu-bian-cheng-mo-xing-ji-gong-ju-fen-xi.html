@@ -272,22 +272,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>轻量化与开源</strong>：aiXcoder-7B等小参数模型降低企业部署成本。</li>
 <li><strong>AI原生开发环境</strong>：Trae、Cursor等工具逐步替代传统IDE，实现“自然语言编程”。</li>
 </ol>
-<p>建议根据项目需求和团队技术栈动态评估，优先选择支持中文、无需翻墙且生态成熟的工具。</p>
-<p>参考资料：<br>
-[1] <a href="https://blog.csdn.net/xo3ylaf9kgs/article/details/144124724" rel="nofollow">https://blog.csdn.net/xo3ylaf9kgs/article/details/144124724</a><br>
-[2] <a href="https://blog.csdn.net/heiyeshuwu/article/details/145668415" rel="nofollow">https://blog.csdn.net/heiyeshuwu/article/details/145668415</a><br>
-[3] <a href="https://zhuanlan.zhihu.com/p/18159562496" rel="nofollow">https://zhuanlan.zhihu.com/p/18159562496</a><br>
-[4] <a href="https://zhuanlan.zhihu.com/p/2877734415" rel="nofollow">https://zhuanlan.zhihu.com/p/2877734415</a><br>
-[5] <a href="https://zhuanlan.zhihu.com/p/694217619" rel="nofollow">https://zhuanlan.zhihu.com/p/694217619</a><br>
-[6] <a href="https://new.qq.com/rain/a/20250225A03Z3G00" rel="nofollow">https://new.qq.com/rain/a/20250225A03Z3G00</a><br>
-[7] <a href="https://www.toutiao.com/topic/7469188753563830308/" rel="nofollow">https://www.toutiao.com/topic/7469188753563830308/</a><br>
-[8] <a href="https://new.qq.com/rain/a/20250304A03H9U00" rel="nofollow">https://new.qq.com/rain/a/20250304A03H9U00</a><br>
-[9] <a href="https://new.qq.com/rain/a/20250303A07N6900" rel="nofollow">https://new.qq.com/rain/a/20250303A07N6900</a><br>
-[10] <a href="http://www.python4office.cn/ads/20240613-ai-code/" rel="nofollow">http://www.python4office.cn/ads/20240613-ai-code/</a><br>
-[11] <a href="https://blog.csdn.net/2401_85773741/article/details/144694086" rel="nofollow">https://blog.csdn.net/2401_85773741/article/details/144694086</a><br>
-[12] <a href="https://blog.csdn.net/qq_33665793/article/details/144565047" rel="nofollow">https://blog.csdn.net/qq_33665793/article/details/144565047</a><br>
-[13] <a href="https://www.datalearner.com/ai-models/leaderboard/datalearner-llm-coding-leaderboard" rel="nofollow">https://www.datalearner.com/ai-models/leaderboard/datalearner-llm-coding-leaderboard</a><br>
-[14] <a href="https://zhuanlan.zhihu.com/p/18121002800" rel="nofollow">https://zhuanlan.zhihu.com/p/18121002800</a></p></div>
+<p>建议根据项目需求和团队技术栈动态评估，优先选择支持中文、无需翻墙且生态成熟的工具。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -307,7 +292,7 @@ if(""!=""){
     var startSite=new Date("");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
@@ -352,6 +337,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");

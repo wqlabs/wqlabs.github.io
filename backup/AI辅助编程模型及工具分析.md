@@ -110,18 +110,3 @@
 
 建议根据项目需求和团队技术栈动态评估，优先选择支持中文、无需翻墙且生态成熟的工具。
 
-参考资料：
-[1] https://blog.csdn.net/xo3ylaf9kgs/article/details/144124724
-[2] https://blog.csdn.net/heiyeshuwu/article/details/145668415
-[3] https://zhuanlan.zhihu.com/p/18159562496
-[4] https://zhuanlan.zhihu.com/p/2877734415
-[5] https://zhuanlan.zhihu.com/p/694217619
-[6] https://new.qq.com/rain/a/20250225A03Z3G00
-[7] https://www.toutiao.com/topic/7469188753563830308/
-[8] https://new.qq.com/rain/a/20250304A03H9U00
-[9] https://new.qq.com/rain/a/20250303A07N6900
-[10] http://www.python4office.cn/ads/20240613-ai-code/
-[11] https://blog.csdn.net/2401_85773741/article/details/144694086
-[12] https://blog.csdn.net/qq_33665793/article/details/144565047
-[13] https://www.datalearner.com/ai-models/leaderboard/datalearner-llm-coding-leaderboard
-[14] https://zhuanlan.zhihu.com/p/18121002800

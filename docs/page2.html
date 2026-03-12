@@ -29,7 +29,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <style>
 .avatar {transition: 0.8s;width:64px;height:64px;object-fit: cover;}
 .avatar:hover{transform: scale(1.15) rotate(360deg);}
-#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.title-left a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-weight: bold;font-family:Monaco;margin-left:8px;}
 .title-right{display:flex;margin:auto 0 0 auto;}
 .title-right button{margin-right:8px;padding:16px;}
 .title-right .circle{padding: 14px 16px;}
@@ -55,8 +55,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <body>
     <div id="header">
-<h1>
-    <img src="https://avatars.githubusercontent.com/u/39255755?v=4" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">韭菜编程博客</a></h1>
+<div class="title-left">
+    <img src="https://avatars.githubusercontent.com/u/39255755?v=4" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">韭菜编程博客</a></div>
 <div class="title-right">
     <a href="https://wqlabs.github.io/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="搜索">
         <svg class="octicon" width="16" height="16" >
@@ -80,9 +80,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div style="margin-bottom: 16px;">我是韭菜编程博客，记录日常，分享韭菜成长经验。</div>
 <nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/RSS-ding-yue-shi-yong-jiao-cheng-%EF%BC%88-dian-nao-%E3%80%81-an-zhuo-%E3%80%81iOS%EF%BC%89.html">
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Chrome-tuo-zhan-cha-jian-tui-jian.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">Chrome拓展插件推荐</span>
+    </div>
+    <div class="listLabels">
+        
+        <span class="Label LabelName" style="background-color:#d876e3"><object><a style="color:#fff" href="tag.html#日常">日常</a></object></span>
+        <span class="Label LabelTime" style="background-color:#bc4c00">2024-07-11</span>
+    </div>
+</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/RSS-ding-yue-shi-yong-jiao-cheng-%EF%BC%88-dian-nao-%E3%80%81-an-zhuo-%E3%80%81iOS%EF%BC%89.html">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">RSS订阅使用教程（电脑、安卓、iOS）</span>
     </div>
@@ -93,7 +104,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/JWT%20-de-you-shi-he-JWT%20-shen-fen-ren-zheng-chang-jian-wen-ti-ji-jie-jue-ban-fa.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">JWT 的优势和JWT 身份认证常见问题及解决办法</span>
     </div>
@@ -104,7 +115,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/shen-me-shi-%20JWT%2C-ru-he-ji-yu-%20JWT%20-jin-xing-shen-fen-yan-zheng--.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">什么是 JWT,如何基于 JWT 进行身份验证?</span>
     </div>
@@ -115,7 +126,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/ru-he-zai-chun-ipv4-de-wang-luo-huan-jing-xia-shi-yong-chun-ipv6-de-ti-zi.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">如何在纯ipv4的网络环境下使用纯ipv6的梯子</span>
     </div>
@@ -126,7 +137,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/le-bu-qi-de-hysteria%28-xie-si-di-li-%29%EF%BC%8C-zheng-jiu-la-ji-xian-lu-de-VPS.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">了不起的hysteria(歇斯底里)，拯救垃圾线路的VPS</span>
     </div>
@@ -137,7 +148,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/ji-suan-ji-xing-ye-mou-lun.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">计算机行业缪论</span>
     </div>
@@ -148,7 +159,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/sing-box-zi-jian-mo-fa-jie-dian-%EF%BC%8C-pei-zhi-fu-wu-duan-he-ke-hu-duan.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">sing-box自建魔法节点，配置服务端和客户端</span>
     </div>
@@ -159,18 +170,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/WARP-ke-xue-shang-wang-quan-gong-lve-%EF%BC%9A-xiang-xi-jiao-cheng-ji-zhang-hao-sheng-ji-cao-zuo-jie-xi.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">WARP科学上网全攻略：详细教程及账号升级操作解析</span>
     </div>
     <div class="listLabels">
-        
+        <span class="Label" style="background-color:#006b75">1</span>
         <span class="Label LabelName" style="background-color:#0075ca"><object><a style="color:#fff" href="tag.html#技术">技术</a></object></span><span class="Label LabelName" style="background-color:#7057ff"><object><a style="color:#fff" href="tag.html#魔法">魔法</a></object></span>
         <span class="Label LabelTime" style="background-color:#bc4c00">2024-06-27</span>
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/2450-wan-GB-liu-liang-de-WARP-zhang-hu-%2B-you-xuan-IP-ni-xu-yao-ma.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">2450万GB流量的WARP账户+优选IP你需要吗</span>
     </div>
@@ -181,7 +192,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/gou-mai-le-yu-ming-zhi-jie-chong-10-nian.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">购买了域名直接冲10年</span>
     </div>
@@ -192,7 +203,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/ji-ge-chang-jian-yong-yu-jie-jue-nginx-fu-zai-jun-heng-de-session-gong-xiang-wen-ti-de-ban-fa.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">几个常见用于解决nginx负载均衡的session共享问题的办法</span>
     </div>
@@ -203,7 +214,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/san-nian-cheng-xu-yuan-mian-shi-jing-yan.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">三年程序员面试经验</span>
     </div>
@@ -214,7 +225,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/duan-lian-kou-cai-%EF%BC%8C%20-lang-du-%E3%80%81-bei-song-%E3%80%81-fu-shu-zhe-san-zhong-fang-fa-%EF%BC%8C-du-neng-gou-ti-gao-wo-men-shuo-hua-de-neng-li.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">锻炼口才， 朗读、背诵、复述这三种方法，都能够提高我们说话的能力</span>
     </div>
@@ -225,24 +236,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     </div>
 </a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/xi-wang-yi-zhi-du-zai.html">
     <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
         <span class="listTitle">希望一直都在</span>
     </div>
     <div class="listLabels">
         
         <span class="Label LabelName" style="background-color:#F9D0C4"><object><a style="color:#fff" href="tag.html#随笔">随笔</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-06-24</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/di-cheng-ben-huo-de-yi-ge-yu-ming-tuo-guan-Cloudflare.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">低成本获得一个域名托管Cloudflare</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#0075ca"><object><a style="color:#fff" href="tag.html#技术">技术</a></object></span>
         <span class="Label LabelTime" style="background-color:#bc4c00">2024-06-24</span>
     </div>
 </a>
@@ -263,7 +263,7 @@ if(""!=""){
     var startSite=new Date("");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
