@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39255755?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="散户乙估值法（完整版体系拆解）
+开门见山 · 核心结论
+散户乙估值法的核心就两句话，主打一眼定胖瘦、极简可落地，不追求精确估值：
+1. ROE ÷ PB ＞ 10%
+2. 股息率 ＞ 7%
+这套极简方法来自顶级民间投资者「散户乙」：从2万元起步，30年复利做到3-5亿，全程只重仓两只大牛股——泸州老窖、中国神华。">
+<meta property="og:title" content="散户乙估值法">
+<meta property="og:description" content="散户乙估值法（完整版体系拆解）
+开门见山 · 核心结论
+散户乙估值法的核心就两句话，主打一眼定胖瘦、极简可落地，不追求精确估值：
+1. ROE ÷ PB ＞ 10%
+2. 股息率 ＞ 7%
+这套极简方法来自顶级民间投资者「散户乙」：从2万元起步，30年复利做到3-5亿，全程只重仓两只大牛股——泸州老窖、中国神华。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wqlabs.github.io/post/san-hu-yi-gu-zhi-fa.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/39255755?v=4">
+<title>散户乙估值法</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">散户乙估值法</h1>
+<div class="title-right">
+    <a href="https://wqlabs.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/wqlabs/wqlabs.github.io/issues/45" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>散户乙估值法（完整版体系拆解）<br>
+开门见山 · 核心结论<br>
+散户乙估值法的核心就两句话，主打一眼定胖瘦、极简可落地，不追求精确估值：</p>
+<ol>
+<li>ROE ÷ PB ＞ 10%</li>
+<li>股息率 ＞ 7%<br>
+这套极简方法来自顶级民间投资者「散户乙」：从2万元起步，30年复利做到3-5亿，全程只重仓两只大牛股——泸州老窖、中国神华。<br>
+看似是“笨办法”，却穿越多轮牛熊：2013年逆势抄底白酒老窖，斩获十余倍收益；2021年布局冷门煤炭神华，三年实现翻倍。</li>
+</ol>
+<hr>
+<p>一、散户乙是谁？凭什么学他的方法？<br>
+散户乙，1950年代生人，1991年拿摆摊积攒的2万元入市，是全国第50万批股民。30余年时间，将初始2万本金做到3-5亿，核心特质：极度简单、极度耐心、极度集中。</p>
+<ul>
+<li>2013—2021年：全仓单吊泸州老窖，穿越白酒低谷与牛市高潮</li>
+<li>2021年后：精准切换中国神华，捕捉高股息修复行情<br>
+他的核心投资真言：买股票就是买企业的一部分，买入那一刻，你的长期回报率就已经锁定了。<br>
+2022年人气顶峰时，他主动注销雪球账号，低调退场，留下金句：“到了我这个年纪，生活要悠闲，状态要笃定，表情要轻松，举止要从容。”<br>
+这套估值法的底层密码，正是这份无视短期波动、坚守长期价值的心态。</li>
+</ul>
+<hr>
+<p>二、核心公式：ROE÷PB，底层逻辑彻底拆解<br>
+这是散户乙体系的灵魂，看似简单，实则规避了绝大多数估值陷阱。</p>
+<ol>
+<li>两个核心基础指标</li>
+</ol>
+<ul>
+<li>ROE（净资产收益率） = 净利润 ÷ 净资产<br>
+通俗理解：企业每一块净资产的赚钱能力，ROE20%代表100元净资产一年赚20元。</li>
+<li>PB（市净率） = 市值 ÷ 净资产<br>
+通俗理解：你买入企业净资产的溢价成本，PB2代表花2元买1元净资产。</li>
+</ul>
+<ol start="2">
+<li>公式推导：ROE ÷ PB<br>
+ROE ÷ PB = (净利润÷净资产) ÷ (市值÷净资产) = 净利润 ÷ 市值<br>
+本质：市盈率倒数（盈利收益率），代表你当下买入的静态长期回报率。</li>
+<li>核心判定标准<br>
+ROE ÷ PB ＞ 10%<br>
+含义：当前价格买入，企业盈利能力可支撑10年左右赚回全部市值，估值足够便宜、安全垫充足。</li>
+<li>为什么不用PE，只用ROE/PB？</li>
+</ol>
+<ul>
+<li>ROE更稳定：短期净利润可通过卖资产、调财报修饰，但ROE体现长期净资产赚钱效率，难以造假。</li>
+<li>PB更抗波动：PE随季度利润剧烈波动，PB锚定企业真实净资产，估值更扎实。</li>
+</ul>
+<ol start="5">
+<li>分行业灵活适配（关键细节）</li>
+</ol>
+<ul>
+<li>高ROE成长股（如白酒）：可接受3-4倍PB，只要ROE/PB维持7%-10%，性价比依旧在线。</li>
+<li>低增速周期股（如煤炭）：要求PB接近1倍甚至破净，靠极致低价锁定回报率。<br>
+核心原则：优质公司也要严控买入价格，杜绝“好公司买贵”。</li>
+</ul>
+<hr>
+<p>三、终极投资目标：十年分红收回本金<br>
+这是散户乙体系最核心、最容易被忽视的精髓。<br>
+复利逻辑：(1+7%)¹⁰≈200%<br>
+含义：7%股息率标的，分红持续复投，哪怕股价十年不涨，股份数和市值也能十年翻倍。<br>
+散户乙的核心评判标准：不看股价涨幅，只看分红多久能覆盖本金。<br>
+他独创「树论」：<br>
+买股票就是种树，分红是确定的果实，年年稳定落地；牛市大涨是偶遇的兔子，属于意外惊喜。<br>
+完美标的模型（标准教科书案例）<br>
+假设企业：市值100亿、净资产50亿、年净利润10亿、年分红7亿</p>
+<ul>
+<li>ROE = 10÷50 = 20%</li>
+<li>PB = 100÷50 = 2倍</li>
+<li>ROE/PB = 20%÷2 = 10%</li>
+<li>股息率 = 7÷100 = 7%<br>
+芒格理论修正：企业长期回报率 ≠ 本身ROE，而等于「买入时ROE÷PB」。买得贵，再好的公司也赚不到钱。</li>
+</ul>
+<hr>
+<p>四、两大经典实战案例<br>
+案例一：泸州老窖（2013年）<br>
+行业背景：塑化剂事件+三公消费严控，白酒行业集体被唾弃，股价从48元暴跌至15元，市场极致恐慌。<br>
+散户乙核心测算：</p>
+<ol>
+<li>当时老窖ROE≈33%，PB≈2.9倍，ROE/PB≈11.4%（超10%门槛）</li>
+<li>股息率≈5%，长期分红率稳定50%以上，现金流扎实</li>
+<li>极端测算：即便业绩跌至历史最低，当下买入仍有安全收益<br>
+操作：26元启动建仓，越跌越买，变卖两套深圳房产加仓，最低持仓价15.73元，整体成本压至20元以内。<br>
+结果：2021年股价冲高至170元分批减仓，持仓成本完全归零，叠加分红复投，总收益超15倍。<br>
+案例二：中国神华（2021年）<br>
+行业背景：碳中和政策压制，煤炭行业无人问津，市场一致看空，神华PE仅7倍、PB不足1倍。<br>
+散户乙核心测算：</li>
+<li>PB接近1倍，股息率超10%，ROE/PB稳稳突破10%门槛</li>
+<li>极端兜底：即便煤炭业务利润归零，仅铁路、港口存量资产，依然具备重估价值<br>
+经典比喻：“众人十鸟在林，我独一鸟在手。看似年化15%收益不惊艳，但胜在煮熟上桌、稳稳落地。”<br>
+操作：2021年17元左右建仓，分批加仓摊薄成本至10元以下。<br>
+结果：2025年股价达33元，叠加累计每股分红6.9元，三年实现翻倍。</li>
+</ol>
+<hr>
+<p>五、散户乙估值法：优缺点实话拆解<br>
+✅ 核心优点</p>
+<ul>
+<li>极简可落地：无需复杂DCF、无需预测远期现金流，仅看ROE、PB、股息率三个核心数据。</li>
+<li>锚定真实现金流：不被股价波动干扰，以分红为本，极易长期拿住筹码。</li>
+<li>自带安全边际：双指标筛选，天然锁定「低估值+高分红+稳盈利」优质标的。</li>
+<li>适配普通散户：无内幕、不高频、不预测市场，靠规则和耐心赚钱。<br>
+❌ 核心缺点</li>
+<li>适用面极窄：直接排除科技、成长、不分红的赛道型公司，只能做成熟价值蓝筹。</li>
+<li>高度依赖ROE稳定性：若企业后期盈利能力下滑，真实回报率会同步塌陷，且滞后性较强。</li>
+<li>极度考验逆向心性：达标机会均出现在行业最冷、市场最恐慌的时刻，敢不敢重仓是最大门槛。</li>
+<li>持有难度极大：核心精髓“买得贱、拿得住”，是绝大多数散户的终极短板。</li>
+</ul>
+<hr>
+<p>六、终极总结<br>
+散户乙估值法，本质是把「低买长持」的大道至简，量化为两套硬性标准：</p>
+<ol>
+<li>ROE/PB ＞ 10%：锁死长期投资回报率底线，杜绝买贵</li>
+<li>股息率 ＞ 7%：锁死分红回本周期，10年可靠分红拿回本金<br>
+最重要的底层提醒：公式只是筛选工具，绝非万能模板。<br>
+真正赚钱的核心，永远是看懂生意、确认ROE可持续、判断行业长期稳定性。工具帮你避坑，认知帮你赚钱。<br>
+收尾金句：<br>
+投资到最后，比的不是谁更聪明，而是谁更诚实——对企业诚实，对时间诚实。</li>
+</ol></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://wqlabs.github.io">韭菜编程博客</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","wqlabs/wqlabs.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+
+
+</html>
